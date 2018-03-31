@@ -430,7 +430,7 @@
 				DEVELOPMENT_TEAM = 7UMADG39Z9;
 				INFOPLIST_FILE = Coco/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.overhq.over.Coco;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Coco;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -445,7 +445,7 @@
 				DEVELOPMENT_TEAM = 7UMADG39Z9;
 				INFOPLIST_FILE = Coco/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.overhq.over.Coco;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Coco;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
