@@ -23,6 +23,8 @@ class ViewController: UIViewController {
         db?.observe(DataEventType.value, with: { (snap) in
             self.label.text = "\(String(describing: snap.value!))"
         })
+        db?.child("time").setValue(Date().ticks)
+        
     }
 
     @IBAction func cocoButtonTapped(_ sender: UIButton) {
@@ -34,3 +36,8 @@ class ViewController: UIViewController {
     }
 }
 
+extension Date {
+    var ticks: UInt64 {
+        return UInt64((self.timeIntervalSince1970 + 62_135_596_800) * 10_000_000)
+    }
+}
