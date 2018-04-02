@@ -10,6 +10,7 @@ target 'Coco' do
 pod 'Firebase'
 pod 'Firebase/Database'
 pod 'CodableFirebase'
+pod 'Firebase/Auth'
 
 
   target 'CocoTests' do

@@ -8,6 +8,7 @@
 
 import UIKit
 import WatchConnectivity
+import Firebase
 
 class OverviewViewController: UIViewController {
     
@@ -26,9 +27,9 @@ class OverviewViewController: UIViewController {
             self?.tableView.reloadData()
         }
         
-        db.fetch()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(watchInfoReceived), name: NSNotification.Name(rawValue: "receivedWatchData"), object: nil)        
+            db.fetch()
+            NotificationCenter.default.addObserver(self, selector: #selector(watchInfoReceived), name: NSNotification.Name(rawValue: "receivedWatchData"), object: nil)
+    
     }
     
 

@@ -20,16 +20,18 @@ class RegisterViewController: UIViewController {
         super.viewDidLoad()
 
     }
-    
+        
     @IBAction func handleRegisterTapped(_ sender: UIButton) {
         guard let username = userName.text else { return }
         guard let password = password.text else { return }
         guard let email = email.text else { return }
         
-//        Auth.auth().createUser(withEmail: email, password: password) { user, error in
-//            if error == nil && user != nil {
-//                
-//            }
-//        }
+        Auth.auth().createUser(withEmail: email, password: password) { user, error in
+            if error == nil && user != nil {
+                print("User Created")
+            } else {
+                print("Registration error: \(error)")
+            }
+        }
     }
 }
