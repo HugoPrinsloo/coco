@@ -8,9 +8,12 @@
 
 import Foundation
 import Firebase
+import CodableFirebase
+
 
 protocol StatusDatabase {
     func addItem(item: ActivityItem)
+    func itemAtIndex(_ index: Int) -> ActivityItem
 }
 
 class CocoDatabase: StatusDatabase {
@@ -26,36 +29,104 @@ class CocoDatabase: StatusDatabase {
     var itemsDidUpdate: (() -> Void)?
     
     init() {
-        
-        db = Database.database().reference().child("Activity")
-        db?.observe(DataEventType.value, with: { (snap) in
-            //TODO: Should decode snap and update items
+        db = Database.database().reference().child("model")        
+    }
+    
+    func fetch() {
+        db?.observe(DataEventType.value, with: { (snapshot) in
+            
+            //if the reference have some values
+            if snapshot.childrenCount > 0 {
+                
+                //clearing the list
+                self.items.removeAll()
+                
+                //iterating through all the values
+                for item in snapshot.children.allObjects as! [DataSnapshot] {
+                    //getting values
+                    let object = item.value as? [String: AnyObject]
+                    let name  = object?["name"]
+                    let timestamp  = object?["timestamp"]
+                    let duration = object?["duration"]
+                    let id = object?["id"]
+                    
+                    //creating artist object with model and fetched values
+                    let activityItem = ActivityItem(id: id as! String?, name: name as! String?, duration: duration as! String?, timestamp: timestamp as! String?)
+                    
+                    //appending it to list
+                    self.items.append(activityItem)
+                }
+                
+                //reloading the tableview
+                self.itemsDidUpdate!()
+            }
         })
     }
     
     func addItem(item: ActivityItem) {
         items.append(item)
-        let newItem = db?.child("\(items.count) - \(item.name)")
-        newItem?.setValue(item.timestamp)
-        newItem?.child("duration").setValue(item.duration)
-        newItem?.child("timestamp").setValue(item.timestamp)
+        //generating a new key inside artists node
+        //and also getting the generated key
+        if let key = db?.childByAutoId().key {
+            //creating artist with the given values
+            let artist = ["id":key,
+                          "artistName": item.name,
+                          "artistGenre": item.timestamp
+            ]
+            
+            //adding the artist inside the generated unique key
+            db?.child(key).setValue(artist)
+        }
     }
     
     func numberOfItems() -> Int {
         return items.count
     }
     
+    func itemAtIndex(_ index: Int) -> ActivityItem {
+        return items[index]
+    }
+
     public func addTotificationBlock(_ block: @escaping () -> Void) {
         
     }
     
 }
 
-struct ActivityItem {
-    let name: String
-    let duration: Int
-    let timestamp: UInt64
+class ArtistModel {
+    var id: String?
+    var name: String?
+    var genre: String?
+    
+    init(id: String?, name: String?, genre: String?){
+        self.id = id
+        self.name = name
+        self.genre = genre
+    }
 }
+
+
+struct ActivityItem: Codable {
+    let id: String?
+    let name: String?
+    let timestamp: String?
+    let duration: String?
+    
+    init(id: String?, name: String?, duration: String?, timestamp: String?) {
+        self.name = name
+        self.duration = duration
+        self.timestamp = "12234"
+        self.id = id
+    }
+}
+
+
+
+
+
+
+
+
 
 
 

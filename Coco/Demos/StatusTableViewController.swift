@@ -14,12 +14,24 @@ class StatusTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-  
+        
+        _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(update), userInfo: nil, repeats: false)
+        _ = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(update1), userInfo: nil, repeats: false)
+        _ = Timer.scheduledTimer(timeInterval: 6, target: self, selector: #selector(update2), userInfo: nil, repeats: false)
+        
         db.itemsDidUpdate = { [weak self] in
             self?.tableView.reloadData()
         }
-        
-        db.fetch()
+    }
+    
+    @objc func update() {
+        db.addItem(name: "Gym", duration: 120)
+    }
+    @objc func update1() {
+        db.addItem(name: "Gym", duration: 130)
+    }
+    @objc func update2() {
+        db.addItem(name: "Gym", duration: 140)
     }
 }
 

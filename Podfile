@@ -9,6 +9,8 @@ target 'Coco' do
 
 pod 'Firebase'
 pod 'Firebase/Database'
+pod 'CodableFirebase'
+
 
   target 'CocoTests' do
     inherit! :search_paths
