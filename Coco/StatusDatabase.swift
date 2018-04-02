@@ -46,12 +46,11 @@ class CocoDatabase: StatusDatabase {
                     //getting values
                     let object = item.value as? [String: AnyObject]
                     let name  = object?["name"]
-                    let timestamp  = object?["timestamp"]
                     let duration = object?["duration"]
                     let id = object?["id"]
                     
                     //creating artist object with model and fetched values
-                    let activityItem = ActivityItem(id: id as! String?, name: name as! String?, duration: duration as! String?, timestamp: timestamp as! String?)
+                    let activityItem = ActivityItem(id: id as! String?, name: name as! String?, duration: duration as! String?)
                     
                     //appending it to list
                     self.items.append(activityItem)
@@ -69,14 +68,13 @@ class CocoDatabase: StatusDatabase {
         //and also getting the generated key
         if let key = db?.childByAutoId().key {
             //creating item with the given values
-            let artist = ["id":key,
+            let activity = ["id":key,
                           "name": item.name,
                           "duration": item.duration,
-                          "timestamp": item.timestamp
             ]
             
             //adding the artist inside the generated unique key
-            db?.child(key).setValue(artist)
+            db?.child(key).setValue(activity)
         }
     }
     
@@ -87,36 +85,17 @@ class CocoDatabase: StatusDatabase {
     func itemAtIndex(_ index: Int) -> ActivityItem {
         return items[index]
     }
-
-    public func addTotificationBlock(_ block: @escaping () -> Void) {
-        
-    }
-    
-}
-
-class ArtistModel {
-    var id: String?
-    var name: String?
-    var genre: String?
-    
-    init(id: String?, name: String?, genre: String?){
-        self.id = id
-        self.name = name
-        self.genre = genre
-    }
 }
 
 
 struct ActivityItem: Codable {
     let id: String?
     let name: String?
-    let timestamp: String?
     let duration: String?
     
-    init(id: String?, name: String?, duration: String?, timestamp: String?) {
+    init(id: String?, name: String?, duration: String?) {
         self.name = name
         self.duration = duration
-        self.timestamp = "12234"
         self.id = id
     }
 }

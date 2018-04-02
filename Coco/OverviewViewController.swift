@@ -28,18 +28,27 @@ class OverviewViewController: UIViewController {
     
     @IBAction func hanldeButtonTapped(_ sender: UIButton) {
         //1. Create the alert controller.
-        let alert = UIAlertController(title: "Add Item", message: "Enter a text", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Add Item", message: nil, preferredStyle: .alert)
         
         //2. Add the text field. You can configure it however you need.
         alert.addTextField { (textField) in
             textField.becomeFirstResponder()
+            textField.placeholder = "Activity"
         }
         
+        alert.addTextField { (textField2) in
+            textField2.placeholder = "Duration (min)"
+
+        }
+        
+
         // 3. Grab the value from the text field, and print it when the user clicks OK.
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
             let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
+            let textField2 = alert?.textFields![1] // Force unwrapping because we know it exists.
+
             if let text = textField?.text {
-                self.db.addItem(item: ActivityItem(id: nil, name: text, duration: "1234", timestamp: "4321"))
+                self.db.addItem(item: ActivityItem(id: nil, name: text, duration: textField2?.text))
             }
         }))
         
@@ -62,6 +71,11 @@ extension OverviewViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let item = db.itemAtIndex(indexPath.row)
         cell.textLabel?.text = item.name
+        cell.detailTextLabel?.text = "Duration: \(String(describing: item.duration!))min"
+        
+        cell.textLabel?.textColor = .black
+        cell.detailTextLabel?.textColor = .gray
+
         return cell
     }
     
