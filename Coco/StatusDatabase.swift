@@ -65,13 +65,14 @@ class CocoDatabase: StatusDatabase {
     
     func addItem(item: ActivityItem) {
         items.append(item)
-        //generating a new key inside artists node
+        //generating a new key inside item
         //and also getting the generated key
         if let key = db?.childByAutoId().key {
-            //creating artist with the given values
+            //creating item with the given values
             let artist = ["id":key,
-                          "artistName": item.name,
-                          "artistGenre": item.timestamp
+                          "name": item.name,
+                          "duration": item.duration,
+                          "timestamp": item.timestamp
             ]
             
             //adding the artist inside the generated unique key

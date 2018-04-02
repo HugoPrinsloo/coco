@@ -22,6 +22,8 @@ class OverviewViewController: UIViewController {
         db.itemsDidUpdate = { [weak self] in
             self?.tableView.reloadData()
         }
+        
+        db.fetch()
     }
     
     @IBAction func hanldeButtonTapped(_ sender: UIButton) {
@@ -37,7 +39,7 @@ class OverviewViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
             let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
             if let text = textField?.text {
-                self.db.addItem(name: text, duration: 123)
+                self.db.addItem(item: ActivityItem(id: nil, name: text, duration: "1234", timestamp: "4321"))
             }
         }))
         
@@ -58,7 +60,7 @@ extension OverviewViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        let item = db.itemAtIndex(index: indexPath.row)
+        let item = db.itemAtIndex(indexPath.row)
         cell.textLabel?.text = item.name
         return cell
     }
