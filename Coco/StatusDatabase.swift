@@ -9,6 +9,7 @@
 import Foundation
 import Firebase
 import CodableFirebase
+import WatchConnectivity
 
 
 protocol StatusDatabase {
@@ -18,11 +19,16 @@ protocol StatusDatabase {
 
 class CocoDatabase: StatusDatabase {
     
+    let watchSession = WCSession.default
+
     private var items: [ActivityItem] = [] {
         didSet {
-            itemsDidUpdate?()
         }
     }
+    
+    private var itemsToWatch: [String?] = []
+    
+
     
     var db: DatabaseReference?
         
@@ -40,26 +46,49 @@ class CocoDatabase: StatusDatabase {
                 
                 //clearing the list
                 self.items.removeAll()
+                self.itemsToWatch.removeAll()
                 
                 //iterating through all the values
                 for item in snapshot.children.allObjects as! [DataSnapshot] {
                     //getting values
-                    let object = item.value as? [String: AnyObject]
+                    let object = item.value as? [String: String]
                     let name  = object?["name"]
                     let duration = object?["duration"]
                     let id = object?["id"]
                     
                     //creating artist object with model and fetched values
-                    let activityItem = ActivityItem(id: id as! String?, name: name as! String?, duration: duration as! String?)
+                    let activityItem = ActivityItem(id: id, name: name, duration: duration)
                     
                     //appending it to list
                     self.items.append(activityItem)
+                    self.itemsToWatch.append(activityItem.name)
                 }
                 
                 //reloading the tableview
                 self.itemsDidUpdate!()
+                self.sendToWatch()
             }
         })
+        
+
+    }
+    
+    func sendToWatch() {
+        do {
+            let applicationDict = ["Array1": itemsToWatch]
+            try watchSession.updateApplicationContext(applicationDict)
+        }
+            
+        catch {
+            print(error)
+        }
+    }
+    
+    
+    func prepareForWatch(_ activityItems: [[String: String]]) {
+        for item in activityItems {
+            
+        }
     }
     
     func addItem(item: ActivityItem) {
@@ -87,8 +116,24 @@ class CocoDatabase: StatusDatabase {
     }
 }
 
+//extension CocoDatabase: WCSessionDelegate {
+//
+//    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+//        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "receivedWatchData"), object: self, userInfo: message)
+//    }
+//
+//
+//    //below 3 functions are needed to be able to connect to several Watches
+//    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {}
+//
+//    func sessionDidDeactivate(_ session: WCSession) {}
+//
+//    func sessionDidBecomeInactive(_ session: WCSession) {}
+//}
 
-struct ActivityItem: Codable {
+
+
+public struct ActivityItem: Codable {
     let id: String?
     let name: String?
     let duration: String?
@@ -99,7 +144,6 @@ struct ActivityItem: Codable {
         self.id = id
     }
 }
-
 
 
 

@@ -56,8 +56,8 @@ extension AppDelegate: WCSessionDelegate {
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "receivedWatchData"), object: self, userInfo: message)
-        print("Message received: ",message)
     }
+    
     
     //below 3 functions are needed to be able to connect to several Watches
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {}
@@ -65,5 +65,16 @@ extension AppDelegate: WCSessionDelegate {
     func sessionDidDeactivate(_ session: WCSession) {}
     
     func sessionDidBecomeInactive(_ session: WCSession) {}
+}
+
+extension WCSessionDelegate {
+    func session(_ session: WCSession, didReceiveActivity activity: [ActivityItem]) {
+    }
+}
+
+extension NotificationCenter {
+    open func post(name aName: NSNotification.Name, object anObject: Any?, activity: [ActivityItem]? = nil) {
+        
+    }
 }
 

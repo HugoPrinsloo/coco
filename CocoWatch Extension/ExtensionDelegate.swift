@@ -57,12 +57,20 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
 extension ExtensionDelegate: WCSessionDelegate {
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ReceivedPhoneData"), object: self, userInfo: message)
         print("Message received: ",message)
+    }
+    
+    func session(_ session: WCSession, didReceiveMessageData messageData: Data, replyHandler: @escaping (Data) -> Void) {
+        
     }
     
     //below 3 functions are needed to be able to connect to several Watches
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {}
     
+    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ReceivedPhoneData"), object: self, userInfo: applicationContext)
+    }
     
 }
+
+

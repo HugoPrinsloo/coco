@@ -24,15 +24,18 @@ class OverviewViewController: UIViewController {
         
         db.itemsDidUpdate = { [weak self] in
             self?.tableView.reloadData()
+            
             self?.watchSession.sendMessage(["String" : "Any"], replyHandler: nil, errorHandler: nil)
         }
         
         db.fetch()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(watchInfo), name: NSNotification.Name(rawValue: "receivedWatchData"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(watchInfoReceived), name: NSNotification.Name(rawValue: "receivedWatchData"), object: nil)        
     }
     
-    @objc func watchInfo() {
+
+    
+    @objc func watchInfoReceived(info: NSNotification) {
         
     }
     

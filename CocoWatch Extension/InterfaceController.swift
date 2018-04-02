@@ -11,10 +11,15 @@ import Foundation
 import WatchConnectivity
 
 class InterfaceController: WKInterfaceController {
+    
+    var items: [String?] = [] {
+        didSet {
+            print(items)
+        }
+    }
 
     @IBOutlet var tableView: WKInterfaceTable!
-    let data = ["test", "test2"]
-    
+
     let session = WCSession.default
     
     override func awake(withContext context: Any?) {
@@ -34,11 +39,11 @@ class InterfaceController: WKInterfaceController {
     }
 
     func loadTableData() {
-        tableView.setNumberOfRows(data.count, withRowType: "RowController")
+        tableView.setNumberOfRows(items.count, withRowType: "RowController")
         
-        for (index, data) in data.enumerated() {
+        for (index, items) in items.enumerated() {
             if let rowController = tableView.rowController(at: index) as? RowController {
-                rowController.rowLabel.setText(data)
+                rowController.rowLabel.setText(items)
             }
         }
     }
@@ -48,14 +53,13 @@ class InterfaceController: WKInterfaceController {
 //        pushController(withName: "DetailController", context: data[rowIndex])
     }
     
-    @objc func didReceivePhoneData() {
-        
+    @objc func didReceivePhoneData(info: NSNotification) {
+        if let message = info.userInfo {
+            items.removeAll()
+            items = message["Array1"] as! [String?]
+        }
+        loadTableData()
     }
 }
 
-extension InterfaceController: WCSessionDelegate {
-    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-
-    }
-}
 
