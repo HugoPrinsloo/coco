@@ -9,6 +9,15 @@
 /* Begin PBXBuildFile section */
 		0C87FC513A64515760455FAF /* Pods_CocoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BEDFB6FB307731A55B1B5FB /* Pods_CocoTests.framework */; };
 		6E62771A20725D480056EDA6 /* OverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E62771920725D480056EDA6 /* OverviewViewController.swift */; };
+		6E62779420726ECC0056EDA6 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E62779220726ECC0056EDA6 /* Interface.storyboard */; };
+		6E62779620726ECC0056EDA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E62779520726ECC0056EDA6 /* Assets.xcassets */; };
+		6E62779D20726ECC0056EDA6 /* CocoWatch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6E62779C20726ECC0056EDA6 /* CocoWatch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		6E6277A220726ECC0056EDA6 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6277A120726ECC0056EDA6 /* InterfaceController.swift */; };
+		6E6277A420726ECC0056EDA6 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6277A320726ECC0056EDA6 /* ExtensionDelegate.swift */; };
+		6E6277A620726ECC0056EDA6 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6277A520726ECC0056EDA6 /* NotificationController.swift */; };
+		6E6277A820726ECD0056EDA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E6277A720726ECD0056EDA6 /* Assets.xcassets */; };
+		6E6277AD20726ECD0056EDA6 /* CocoWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 6E62779020726ECC0056EDA6 /* CocoWatch.app */; };
+		6E6277B72072707A0056EDA6 /* RowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6277B62072707A0056EDA6 /* RowController.swift */; };
 		6E6DB6F4206FB417005C2CEB /* StatusTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6DB6F3206FB417005C2CEB /* StatusTableViewController.swift */; };
 		6E6DB6F6206FB6F6005C2CEB /* StatusDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6DB6F5206FB6F6005C2CEB /* StatusDatabase.swift */; };
 		6EAEF4D3206FA37100334A82 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EAEF4D2206FA37100334A82 /* GoogleService-Info.plist */; };
@@ -24,6 +33,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		6E62779E20726ECC0056EDA6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6ED3CD0D206FA15900C26F5E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6E62779B20726ECC0056EDA6;
+			remoteInfo = "CocoWatch Extension";
+		};
+		6E6277AB20726ECD0056EDA6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6ED3CD0D206FA15900C26F5E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6E62778F20726ECC0056EDA6;
+			remoteInfo = CocoWatch;
+		};
 		6ED3CD2A206FA15A00C26F5E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6ED3CD0D206FA15900C26F5E /* Project object */;
@@ -40,6 +63,31 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		6E6277B320726ECD0056EDA6 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				6E62779D20726ECC0056EDA6 /* CocoWatch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6E6277B520726ECD0056EDA6 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				6E6277AD20726ECD0056EDA6 /* CocoWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0D1967C5EC82BC3D4AE9105F /* Pods-CocoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CocoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CocoUITests/Pods-CocoUITests.release.xcconfig"; sourceTree = "<group>"; };
 		1B889A8AD6489EF36A5B4CDB /* Pods-CocoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CocoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CocoTests/Pods-CocoTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -47,6 +95,18 @@
 		5A75DD1DDD9F89C4F642B4DE /* Pods-Coco.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Coco.release.xcconfig"; path = "Pods/Target Support Files/Pods-Coco/Pods-Coco.release.xcconfig"; sourceTree = "<group>"; };
 		67E279A5E510F8EFDE26D756 /* Pods_CocoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CocoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E62771920725D480056EDA6 /* OverviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverviewViewController.swift; sourceTree = "<group>"; };
+		6E62779020726ECC0056EDA6 /* CocoWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CocoWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E62779320726ECC0056EDA6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		6E62779520726ECC0056EDA6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6E62779720726ECC0056EDA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6E62779C20726ECC0056EDA6 /* CocoWatch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "CocoWatch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E6277A120726ECC0056EDA6 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		6E6277A320726ECC0056EDA6 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		6E6277A520726ECC0056EDA6 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		6E6277A720726ECD0056EDA6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6E6277A920726ECD0056EDA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6E6277AA20726ECD0056EDA6 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		6E6277B62072707A0056EDA6 /* RowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowController.swift; sourceTree = "<group>"; };
 		6E6DB6F3206FB417005C2CEB /* StatusTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusTableViewController.swift; sourceTree = "<group>"; };
 		6E6DB6F5206FB6F6005C2CEB /* StatusDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusDatabase.swift; sourceTree = "<group>"; };
 		6EAEF4D2206FA37100334A82 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -70,6 +130,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		6E62779920726ECC0056EDA6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6ED3CD12206FA15900C26F5E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -119,12 +186,38 @@
 			path = demo;
 			sourceTree = "<group>";
 		};
+		6E62779120726ECC0056EDA6 /* CocoWatch */ = {
+			isa = PBXGroup;
+			children = (
+				6E62779220726ECC0056EDA6 /* Interface.storyboard */,
+				6E62779520726ECC0056EDA6 /* Assets.xcassets */,
+				6E62779720726ECC0056EDA6 /* Info.plist */,
+			);
+			path = CocoWatch;
+			sourceTree = "<group>";
+		};
+		6E6277A020726ECC0056EDA6 /* CocoWatch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				6E6277A120726ECC0056EDA6 /* InterfaceController.swift */,
+				6E6277A320726ECC0056EDA6 /* ExtensionDelegate.swift */,
+				6E6277A520726ECC0056EDA6 /* NotificationController.swift */,
+				6E6277A720726ECD0056EDA6 /* Assets.xcassets */,
+				6E6277A920726ECD0056EDA6 /* Info.plist */,
+				6E6277AA20726ECD0056EDA6 /* PushNotificationPayload.apns */,
+				6E6277B62072707A0056EDA6 /* RowController.swift */,
+			);
+			path = "CocoWatch Extension";
+			sourceTree = "<group>";
+		};
 		6ED3CD0C206FA15900C26F5E = {
 			isa = PBXGroup;
 			children = (
 				6ED3CD17206FA15900C26F5E /* Coco */,
 				6ED3CD2C206FA15A00C26F5E /* CocoTests */,
 				6ED3CD37206FA15A00C26F5E /* CocoUITests */,
+				6E62779120726ECC0056EDA6 /* CocoWatch */,
+				6E6277A020726ECC0056EDA6 /* CocoWatch Extension */,
 				6ED3CD16206FA15900C26F5E /* Products */,
 				1086EE1680447DCFE268613B /* Pods */,
 				72FE90C9A5068276FCEB125E /* Frameworks */,
@@ -137,6 +230,8 @@
 				6ED3CD15206FA15900C26F5E /* Coco.app */,
 				6ED3CD29206FA15A00C26F5E /* CocoTests.xctest */,
 				6ED3CD34206FA15A00C26F5E /* CocoUITests.xctest */,
+				6E62779020726ECC0056EDA6 /* CocoWatch.app */,
+				6E62779C20726ECC0056EDA6 /* CocoWatch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -188,6 +283,40 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		6E62778F20726ECC0056EDA6 /* CocoWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6E6277B420726ECD0056EDA6 /* Build configuration list for PBXNativeTarget "CocoWatch" */;
+			buildPhases = (
+				6E62778E20726ECC0056EDA6 /* Resources */,
+				6E6277B320726ECD0056EDA6 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6E62779F20726ECC0056EDA6 /* PBXTargetDependency */,
+			);
+			name = CocoWatch;
+			productName = CocoWatch;
+			productReference = 6E62779020726ECC0056EDA6 /* CocoWatch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		6E62779B20726ECC0056EDA6 /* CocoWatch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6E6277B220726ECD0056EDA6 /* Build configuration list for PBXNativeTarget "CocoWatch Extension" */;
+			buildPhases = (
+				6E62779820726ECC0056EDA6 /* Sources */,
+				6E62779920726ECC0056EDA6 /* Frameworks */,
+				6E62779A20726ECC0056EDA6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CocoWatch Extension";
+			productName = "CocoWatch Extension";
+			productReference = 6E62779C20726ECC0056EDA6 /* CocoWatch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 		6ED3CD14206FA15900C26F5E /* Coco */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6ED3CD3D206FA15A00C26F5E /* Build configuration list for PBXNativeTarget "Coco" */;
@@ -198,10 +327,12 @@
 				6ED3CD13206FA15900C26F5E /* Resources */,
 				ACABF456045637AA50AE2080 /* [CP] Embed Pods Frameworks */,
 				BFC717B78CBC9FF4A19E3769 /* [CP] Copy Pods Resources */,
+				6E6277B520726ECD0056EDA6 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				6E6277AC20726ECD0056EDA6 /* PBXTargetDependency */,
 			);
 			name = Coco;
 			productName = Coco;
@@ -260,6 +391,14 @@
 				LastUpgradeCheck = 0910;
 				ORGANIZATIONNAME = Over;
 				TargetAttributes = {
+					6E62778F20726ECC0056EDA6 = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+					};
+					6E62779B20726ECC0056EDA6 = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+					};
 					6ED3CD14206FA15900C26F5E = {
 						CreatedOnToolsVersion = 9.1;
 						ProvisioningStyle = Automatic;
@@ -292,11 +431,30 @@
 				6ED3CD14206FA15900C26F5E /* Coco */,
 				6ED3CD28206FA15A00C26F5E /* CocoTests */,
 				6ED3CD33206FA15A00C26F5E /* CocoUITests */,
+				6E62778F20726ECC0056EDA6 /* CocoWatch */,
+				6E62779B20726ECC0056EDA6 /* CocoWatch Extension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		6E62778E20726ECC0056EDA6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6E62779620726ECC0056EDA6 /* Assets.xcassets in Resources */,
+				6E62779420726ECC0056EDA6 /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6E62779A20726ECC0056EDA6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6E6277A820726ECD0056EDA6 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6ED3CD13206FA15900C26F5E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -481,6 +639,17 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		6E62779820726ECC0056EDA6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6E6277A620726ECC0056EDA6 /* NotificationController.swift in Sources */,
+				6E6277A420726ECC0056EDA6 /* ExtensionDelegate.swift in Sources */,
+				6E6277B72072707A0056EDA6 /* RowController.swift in Sources */,
+				6E6277A220726ECC0056EDA6 /* InterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6ED3CD11206FA15900C26F5E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -512,6 +681,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		6E62779F20726ECC0056EDA6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6E62779B20726ECC0056EDA6 /* CocoWatch Extension */;
+			targetProxy = 6E62779E20726ECC0056EDA6 /* PBXContainerItemProxy */;
+		};
+		6E6277AC20726ECD0056EDA6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6E62778F20726ECC0056EDA6 /* CocoWatch */;
+			targetProxy = 6E6277AB20726ECD0056EDA6 /* PBXContainerItemProxy */;
+		};
 		6ED3CD2B206FA15A00C26F5E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 6ED3CD14206FA15900C26F5E /* Coco */;
@@ -525,6 +704,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		6E62779220726ECC0056EDA6 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6E62779320726ECC0056EDA6 /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
 		6ED3CD1C206FA15900C26F5E /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -544,6 +731,80 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		6E6277AE20726ECD0056EDA6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7UMADG39Z9;
+				IBSC_MODULE = CocoWatch_Extension;
+				INFOPLIST_FILE = CocoWatch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Coco.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.1;
+			};
+			name = Debug;
+		};
+		6E6277AF20726ECD0056EDA6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7UMADG39Z9;
+				IBSC_MODULE = CocoWatch_Extension;
+				INFOPLIST_FILE = CocoWatch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Coco.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.1;
+			};
+			name = Release;
+		};
+		6E6277B020726ECD0056EDA6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7UMADG39Z9;
+				INFOPLIST_FILE = "CocoWatch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Coco.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.1;
+			};
+			name = Debug;
+		};
+		6E6277B120726ECD0056EDA6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7UMADG39Z9;
+				INFOPLIST_FILE = "CocoWatch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Coco.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.1;
+			};
+			name = Release;
+		};
 		6ED3CD3B206FA15A00C26F5E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -756,6 +1017,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		6E6277B220726ECD0056EDA6 /* Build configuration list for PBXNativeTarget "CocoWatch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6E6277B020726ECD0056EDA6 /* Debug */,
+				6E6277B120726ECD0056EDA6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6E6277B420726ECD0056EDA6 /* Build configuration list for PBXNativeTarget "CocoWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6E6277AE20726ECD0056EDA6 /* Debug */,
+				6E6277AF20726ECD0056EDA6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		6ED3CD10206FA15900C26F5E /* Build configuration list for PBXProject "Coco" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

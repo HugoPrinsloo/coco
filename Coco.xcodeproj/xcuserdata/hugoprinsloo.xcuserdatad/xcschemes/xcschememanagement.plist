@@ -7,6 +7,16 @@
 		<key>Coco.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
+		<key>CocoWatch (Notification).xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>9</integer>
+		</dict>
+		<key>CocoWatch.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
 			<integer>7</integer>
 		</dict>
 	</dict>
