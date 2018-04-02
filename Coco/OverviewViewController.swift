@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import WatchConnectivity
 
 class OverviewViewController: UIViewController {
     
     let db = CocoDatabase()
 
     @IBOutlet weak var tableView: UITableView!
+    
+    let watchSession = WCSession.default
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,9 +24,16 @@ class OverviewViewController: UIViewController {
         
         db.itemsDidUpdate = { [weak self] in
             self?.tableView.reloadData()
+            self?.watchSession.sendMessage(["String" : "Any"], replyHandler: nil, errorHandler: nil)
         }
         
         db.fetch()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(watchInfo), name: NSNotification.Name(rawValue: "receivedWatchData"), object: nil)
+    }
+    
+    @objc func watchInfo() {
+        
     }
     
     @IBAction func hanldeButtonTapped(_ sender: UIButton) {
@@ -80,6 +90,12 @@ extension OverviewViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+}
+
+extension OverviewViewController {
+    func addWatch() {
         
     }
 }

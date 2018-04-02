@@ -8,16 +8,18 @@
 
 import WatchKit
 import Foundation
-
+import WatchConnectivity
 
 class InterfaceController: WKInterfaceController {
 
     @IBOutlet var tableView: WKInterfaceTable!
-    
     let data = ["test", "test2"]
+    
+    let session = WCSession.default
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
+        NotificationCenter.default.addObserver(self, selector: #selector(didReceivePhoneData), name: NSNotification.Name(rawValue: "ReceivedPhoneData"), object: nil)
         loadTableData()
     }
     
@@ -45,4 +47,15 @@ class InterfaceController: WKInterfaceController {
         super.table(tableView, didSelectRowAt: rowIndex)
 //        pushController(withName: "DetailController", context: data[rowIndex])
     }
+    
+    @objc func didReceivePhoneData() {
+        
+    }
 }
+
+extension InterfaceController: WCSessionDelegate {
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+
+    }
+}
+
