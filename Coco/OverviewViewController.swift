@@ -24,8 +24,6 @@ class OverviewViewController: UIViewController {
         
         db.itemsDidUpdate = { [weak self] in
             self?.tableView.reloadData()
-            
-            self?.watchSession.sendMessage(["String" : "Any"], replyHandler: nil, errorHandler: nil)
         }
         
         db.fetch()

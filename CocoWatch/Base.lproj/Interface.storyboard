@@ -19,7 +19,7 @@
                                 <tableRow identifier="RowController" id="veR-sD-6mh" customClass="RowController" customModule="CocoWatch_Extension">
                                     <group key="rootItem" width="1" alignment="left" id="WPi-wY-4x1">
                                         <items>
-                                            <label width="133" height="36" alignment="center" text="Label" id="Tbx-AP-ilY"/>
+                                            <label width="133" height="57" alignment="center" text="Label" id="Tbx-AP-ilY"/>
                                         </items>
                                     </group>
                                     <connections>
