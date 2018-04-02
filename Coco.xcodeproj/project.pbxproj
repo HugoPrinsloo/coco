@@ -110,6 +110,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		6E62771B207260FA0056EDA6 /* demo */ = {
+			isa = PBXGroup;
+			children = (
+				6ED3CD1A206FA15900C26F5E /* ViewController.swift */,
+				6E6DB6F3206FB417005C2CEB /* StatusTableViewController.swift */,
+			);
+			path = demo;
+			sourceTree = "<group>";
+		};
 		6ED3CD0C206FA15900C26F5E = {
 			isa = PBXGroup;
 			children = (
@@ -136,8 +145,6 @@
 			isa = PBXGroup;
 			children = (
 				6ED3CD18206FA15900C26F5E /* AppDelegate.swift */,
-				6ED3CD1A206FA15900C26F5E /* ViewController.swift */,
-				6E6DB6F3206FB417005C2CEB /* StatusTableViewController.swift */,
 				6E62771920725D480056EDA6 /* OverviewViewController.swift */,
 				6E6DB6F5206FB6F6005C2CEB /* StatusDatabase.swift */,
 				6ED3CD1C206FA15900C26F5E /* Main.storyboard */,
@@ -145,6 +152,7 @@
 				6ED3CD21206FA15A00C26F5E /* LaunchScreen.storyboard */,
 				6ED3CD24206FA15A00C26F5E /* Info.plist */,
 				6EAEF4D2206FA37100334A82 /* GoogleService-Info.plist */,
+				6E62771B207260FA0056EDA6 /* demo */,
 			);
 			path = Coco;
 			sourceTree = "<group>";

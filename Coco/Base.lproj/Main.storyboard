@@ -107,7 +107,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="2of-Fv-efA"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Add Activity"/>
                                 <connections>
                                     <action selector="hanldeButtonTapped:" destination="8l2-CF-9ZY" eventType="touchUpInside" id="dbY-bV-x7N"/>
                                 </connections>
