@@ -68,6 +68,11 @@ class OverviewViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
 
     }
+    
+    @IBAction func handleLogoutButtonPressed(_ sender: UIButton) {
+        try! Auth.auth().signOut()
+        dismiss(animated: true, completion: nil)
+    }
 }
 
 extension OverviewViewController: UITableViewDelegate, UITableViewDataSource {

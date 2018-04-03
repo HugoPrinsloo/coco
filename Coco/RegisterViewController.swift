@@ -29,6 +29,15 @@ class RegisterViewController: UIViewController {
         Auth.auth().createUser(withEmail: email, password: password) { user, error in
             if error == nil && user != nil {
                 print("User Created")
+                
+                let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+                changeRequest?.displayName = username
+                changeRequest?.commitChanges(completion: { (error) in
+                    if error == nil {
+                        print("User Display Name Changed")
+                        self.dismiss(animated: false, completion: nil)
+                    }
+                })
             } else {
                 print("Registration error: \(error)")
             }

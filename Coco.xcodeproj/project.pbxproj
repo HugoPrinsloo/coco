@@ -21,6 +21,7 @@
 		6E6277B72072707A0056EDA6 /* RowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6277B62072707A0056EDA6 /* RowController.swift */; };
 		6E6DB6F4206FB417005C2CEB /* StatusTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6DB6F3206FB417005C2CEB /* StatusTableViewController.swift */; };
 		6E6DB6F6206FB6F6005C2CEB /* StatusDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6DB6F5206FB6F6005C2CEB /* StatusDatabase.swift */; };
+		6E718F7D207356FF00BB935D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E718F7C207356FF00BB935D /* LoginViewController.swift */; };
 		6EAEF4D3206FA37100334A82 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EAEF4D2206FA37100334A82 /* GoogleService-Info.plist */; };
 		6EC63D722072C29C004CF135 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC63D712072C29C004CF135 /* InitialViewController.swift */; };
 		6ED3CD19206FA15900C26F5E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED3CD18206FA15900C26F5E /* AppDelegate.swift */; };
@@ -112,6 +113,7 @@
 		6E6277B62072707A0056EDA6 /* RowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowController.swift; sourceTree = "<group>"; };
 		6E6DB6F3206FB417005C2CEB /* StatusTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusTableViewController.swift; sourceTree = "<group>"; };
 		6E6DB6F5206FB6F6005C2CEB /* StatusDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusDatabase.swift; sourceTree = "<group>"; };
+		6E718F7C207356FF00BB935D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		6EAEF4D2206FA37100334A82 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6EC63D712072C29C004CF135 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		6ED3CD15206FA15900C26F5E /* Coco.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Coco.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -253,6 +255,7 @@
 				6ED3CD18206FA15900C26F5E /* AppDelegate.swift */,
 				6E62771920725D480056EDA6 /* OverviewViewController.swift */,
 				6E4D4BBA2072B82D000922C3 /* RegisterViewController.swift */,
+				6E718F7C207356FF00BB935D /* LoginViewController.swift */,
 				6EC63D712072C29C004CF135 /* InitialViewController.swift */,
 				6E6DB6F5206FB6F6005C2CEB /* StatusDatabase.swift */,
 				6ED3CD1C206FA15900C26F5E /* Main.storyboard */,
@@ -674,6 +677,7 @@
 				6EC63D722072C29C004CF135 /* InitialViewController.swift in Sources */,
 				6E6DB6F4206FB417005C2CEB /* StatusTableViewController.swift in Sources */,
 				6E62771A20725D480056EDA6 /* OverviewViewController.swift in Sources */,
+				6E718F7D207356FF00BB935D /* LoginViewController.swift in Sources */,
 				6E4D4BBB2072B82D000922C3 /* RegisterViewController.swift in Sources */,
 				6ED3CD1B206FA15900C26F5E /* ViewController.swift in Sources */,
 				6ED3CD19206FA15900C26F5E /* AppDelegate.swift in Sources */,
