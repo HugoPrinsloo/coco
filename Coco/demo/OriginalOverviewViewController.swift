@@ -60,7 +60,7 @@ class OriginalOverviewViewController: UIViewController {
             let textField2 = alert?.textFields![1] // Force unwrapping because we know it exists.
 
             if let text = textField?.text {
-                self.db.addItem(item: ActivityItem(id: nil, name: text, duration: textField2?.text))
+//                self.db.addItem(item: ActivityItem(id: nil, name: text, duration: textField2?.text))
             }
         }))
         

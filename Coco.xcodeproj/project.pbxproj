@@ -23,6 +23,7 @@
 		6E6DB6F4206FB417005C2CEB /* StatusTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6DB6F3206FB417005C2CEB /* StatusTableViewController.swift */; };
 		6E6DB6F6206FB6F6005C2CEB /* StatusDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6DB6F5206FB6F6005C2CEB /* StatusDatabase.swift */; };
 		6E718F7D207356FF00BB935D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E718F7C207356FF00BB935D /* LoginViewController.swift */; };
+		6E775C292078FFC0001799F8 /* OverviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E775C282078FFC0001799F8 /* OverviewCell.swift */; };
 		6EAEF4D3206FA37100334A82 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EAEF4D2206FA37100334A82 /* GoogleService-Info.plist */; };
 		6EBEA2312078EC1A00221BD5 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6EBEA2302078EC1A00221BD5 /* Color.xcassets */; };
 		6EBEA2332078F05A00221BD5 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBEA2322078F05A00221BD5 /* UIImage+Extensions.swift */; };
@@ -127,6 +128,7 @@
 		6E6DB6F3206FB417005C2CEB /* StatusTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusTableViewController.swift; sourceTree = "<group>"; };
 		6E6DB6F5206FB6F6005C2CEB /* StatusDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusDatabase.swift; sourceTree = "<group>"; };
 		6E718F7C207356FF00BB935D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		6E775C282078FFC0001799F8 /* OverviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewCell.swift; sourceTree = "<group>"; };
 		6EAEF4D2206FA37100334A82 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6EBEA2302078EC1A00221BD5 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		6EBEA2322078F05A00221BD5 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
@@ -306,6 +308,7 @@
 				6E4D4BBA2072B82D000922C3 /* RegisterViewController.swift */,
 				6E42D4362078D110003CF303 /* OverviewViewController.swift */,
 				6E718F7C207356FF00BB935D /* LoginViewController.swift */,
+				6E775C282078FFC0001799F8 /* OverviewCell.swift */,
 				6EC63D712072C29C004CF135 /* InitialViewController.swift */,
 				6E6DB6F5206FB6F6005C2CEB /* StatusDatabase.swift */,
 				6ED3CD1C206FA15900C26F5E /* Main.storyboard */,
@@ -738,6 +741,7 @@
 				6E62771A20725D480056EDA6 /* OriginalOverviewViewController.swift in Sources */,
 				6E718F7D207356FF00BB935D /* LoginViewController.swift in Sources */,
 				6E4D4BBB2072B82D000922C3 /* RegisterViewController.swift in Sources */,
+				6E775C292078FFC0001799F8 /* OverviewCell.swift in Sources */,
 				6ED3CD1B206FA15900C26F5E /* ViewController.swift in Sources */,
 				6EBEA2382078F0BC00221BD5 /* UIColor+Extensions.swift in Sources */,
 				6EBEA2362078F09600221BD5 /* UINavigationBar+Extensions.swift in Sources */,

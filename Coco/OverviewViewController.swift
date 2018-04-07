@@ -7,11 +7,18 @@
 //
 
 import UIKit
+import Firebase
+import WatchConnectivity
+
 
 class OverviewViewController: UIViewController {
     
+    private let db = CocoDatabase()
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
+    let watchSession = WCSession.default
+
     override func viewDidLoad() {
         super.viewDidLoad()
         title = NSLocalizedString("Today", comment: "")
@@ -25,6 +32,59 @@ class OverviewViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.register(OverviewCell.self, forCellWithReuseIdentifier: "Cell")
         
+        db.itemsDidUpdate = { [weak self] in
+            self?.collectionView.reloadData()
+        }
+        
+        db.fetch()
+        NotificationCenter.default.addObserver(self, selector: #selector(watchInfoReceived), name: NSNotification.Name(rawValue: "receivedWatchData"), object: nil)
+    }
+    
+    @objc func watchInfoReceived(info: NSNotification) {
+        
+    }
+    
+    @IBAction func handleAddButtonTapped(_ sender: UIButton) {
+        //1. Create the alert controller.
+        let alert = UIAlertController(title: "Add Item", message: nil, preferredStyle: .alert)
+        
+        //2. Add the text field. You can configure it however you need.
+        alert.addTextField { (textField) in
+            textField.becomeFirstResponder()
+            textField.placeholder = "Activity"
+        }
+        
+        alert.addTextField { (textField2) in
+            textField2.placeholder = "Start Time"
+            
+        }
+        
+        alert.addTextField { (textField2) in
+            textField2.placeholder = "End Time"
+            
+        }
+        
+        alert.addTextField { (textField2) in
+            textField2.placeholder = "Duration (min)"
+            
+        }
+        
+        
+        
+        // 3. Grab the value from the text field, and print it when the user clicks OK.
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
+            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
+            let start = alert?.textFields![1] // Force unwrapping because we know it exists.
+            let end = alert?.textFields![2] // Force unwrapping because we know it exists.
+            let dur = alert?.textFields![3] // Force unwrapping because we know it exists.
+
+            if let text = textField?.text {
+                self.db.addItem(item: ActivityItem(id: nil, name: text, duration: dur?.text, startTime: start?.text, endTime: end?.text))
+            }
+        }))
+        
+        // 4. Present the alert.
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
@@ -34,12 +94,13 @@ extension OverviewViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return db.numberOfItems()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! OverviewCell
-        cell.configure("Gym", duration: "45 Min", startTime: "09:00", endTime: "09:45")
+        let item = db.itemAtIndex(indexPath.item)
+        cell.configure(item.name ?? "", duration: "\(String(describing: item.duration)) Min", startTime: item.startTime ?? "", endTime: item.endTime ?? "")
         return cell
     }
     
@@ -47,106 +108,6 @@ extension OverviewViewController: UICollectionViewDelegate, UICollectionViewData
         return CGSize(width: collectionView.frame.width - 20, height: 62)
     }
 }
-
-class OverviewCell: UICollectionViewCell {
-    
-    private let activityLabel: UILabel = {
-        let l = UILabel()
-        l.translatesAutoresizingMaskIntoConstraints = false
-        l.font = UIFont(cocoFont: .semibold, size: 16)
-        l.textColor = .white
-        return l
-    }()
-    
-    private let durationLabel: UILabel = {
-        let l = UILabel()
-        l.translatesAutoresizingMaskIntoConstraints = false
-        l.font = UIFont(cocoFont: .regular, size: 16)
-        l.textColor = .white
-        l.textAlignment = .right
-        return l
-    }()
-    
-    private let startTimeLabel: UILabel = {
-        let l = UILabel()
-        l.translatesAutoresizingMaskIntoConstraints = false
-        l.font = UIFont(cocoFont: .light, size: 10)
-        l.textColor = UIColor(cocoColor: .whiteBlue)
-        return l
-    }()
-    
-    private let endTimeLabel: UILabel = {
-        let l = UILabel()
-        l.translatesAutoresizingMaskIntoConstraints = false
-        l.font = UIFont(cocoFont: .light, size: 10)
-        l.textColor = UIColor(cocoColor: .whiteBlue)
-        l.textAlignment = .right
-        return l
-    }()
-    
-    private let timelineView: UIView = {
-        let l = UIView()
-        l.translatesAutoresizingMaskIntoConstraints = false
-        l.backgroundColor = UIColor.red
-        return l
-    }()
-
-    
-    func configure(_ activity: String, duration: String, startTime: String, endTime: String) {
-        activityLabel.text = activity
-        durationLabel.text = duration
-        startTimeLabel.text = startTime
-        endTimeLabel.text = endTime
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        commonInit()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        commonInit()
-    }
-    
-    private func commonInit() {
-        addSubview(activityLabel)
-        addSubview(durationLabel)
-        addSubview(startTimeLabel)
-        addSubview(endTimeLabel)
-        addSubview(timelineView)
-        
-        backgroundColor = UIColor(cocoColor: .washoutBlue)
-
-        layer.cornerRadius = 15
-        clipsToBounds = true
-        
-        addContraints()
-    }
-    
-    private func addContraints() {
-        activityLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24).isActive = true
-        activityLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        
-        durationLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -18).isActive = true
-        durationLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        
-        timelineView.leadingAnchor.constraint(greaterThanOrEqualTo: activityLabel.trailingAnchor).isActive = true
-        timelineView.trailingAnchor.constraint(greaterThanOrEqualTo: durationLabel.leadingAnchor).isActive = true
-        timelineView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 8).isActive = true
-        timelineView.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 12).isActive = true
-        timelineView.widthAnchor.constraint(lessThanOrEqualToConstant: 68).isActive = true
-        timelineView.heightAnchor.constraint(equalToConstant: 1).isActive = true
-        
-        startTimeLabel.leadingAnchor.constraint(equalTo: timelineView.leadingAnchor).isActive = true
-        startTimeLabel.bottomAnchor.constraint(equalTo: timelineView.topAnchor, constant: 0).isActive = true
-        
-        endTimeLabel.trailingAnchor.constraint(equalTo: timelineView.trailingAnchor).isActive = true
-        endTimeLabel.bottomAnchor.constraint(equalTo: timelineView.topAnchor, constant: 0).isActive = true
-
-    }
-}
-
 
 
 

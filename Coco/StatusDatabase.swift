@@ -59,9 +59,11 @@ class CocoDatabase: StatusDatabase {
                     let name  = object?["name"]
                     let duration = object?["duration"]
                     let id = object?["id"]
-                    
+                    let startTime = object?["startTime"]
+                    let endTime = object?["endTime"]
+
                     //creating artist object with model and fetched values
-                    let activityItem = ActivityItem(id: id, name: name, duration: duration)
+                    let activityItem = ActivityItem(id: id, name: name, duration: duration, startTime: startTime, endTime: endTime)
                     
                     //appending it to list
                     self.items.append(activityItem)
@@ -90,19 +92,35 @@ class CocoDatabase: StatusDatabase {
     
     
     func addItem(item: ActivityItem) {
+
         items.append(item)
         //generating a new key inside item
         //and also getting the generated key
-        if let key = db?.childByAutoId().key {
-            //creating item with the given values
-            let activity = ["id":key,
-                          "name": item.name,
-                          "duration": item.duration,
-            ]
+            let date = currentDate()
+            let base = db?.child(date)
             
-            //adding the artist inside the generated unique key
-            db?.child(key).setValue(activity)
+            if let key = db?.childByAutoId().key {
+                //creating item with the given values
+                let activity = ["id":key,
+                                "name": item.name,
+                                "duration": item.duration,
+                                "startTime": item.startTime,
+                                "endTime": item.endTime,
+                                ]
+                
+                //adding the artist inside the generated unique key
+                
+                base?.child(key).setValue(activity)
         }
+    }
+    
+    func currentDate() -> String {
+        let date = Date()
+        let formatter = DateFormatter()
+
+        formatter.dateFormat = "dd-MM-yyyy"
+
+        return formatter.string(from: date)
     }
     
     func numberOfItems() -> Int {
@@ -119,11 +137,15 @@ public struct ActivityItem: Codable {
     let id: String?
     let name: String?
     let duration: String?
+    let startTime: String?
+    let endTime: String?
     
-    init(id: String?, name: String?, duration: String?) {
+    init(id: String?, name: String?, duration: String?, startTime: String?, endTime: String?) {
         self.name = name
         self.duration = duration
         self.id = id
+        self.startTime = startTime
+        self.endTime = endTime
     }
 }
 
