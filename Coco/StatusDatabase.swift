@@ -35,7 +35,11 @@ class CocoDatabase: StatusDatabase {
     var itemsDidUpdate: (() -> Void)?
     
     init() {
-        db = Database.database().reference().child("model")        
+        guard let uid = Auth.auth().currentUser?.uid else {
+            //TODO: Logout
+            return
+        }
+        db = Database.database().reference().child("user: \(uid)")
     }
     
     func fetch() {
@@ -109,22 +113,6 @@ class CocoDatabase: StatusDatabase {
         return items[index]
     }
 }
-
-//extension CocoDatabase: WCSessionDelegate {
-//
-//    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-//        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "receivedWatchData"), object: self, userInfo: message)
-//    }
-//
-//
-//    //below 3 functions are needed to be able to connect to several Watches
-//    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {}
-//
-//    func sessionDidDeactivate(_ session: WCSession) {}
-//
-//    func sessionDidBecomeInactive(_ session: WCSession) {}
-//}
-
 
 
 public struct ActivityItem: Codable {
