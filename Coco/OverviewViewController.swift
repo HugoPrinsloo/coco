@@ -24,6 +24,7 @@ class OverviewViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(OverviewCell.self, forCellWithReuseIdentifier: "Cell")
+        
     }
 }
 
@@ -52,7 +53,7 @@ class OverviewCell: UICollectionViewCell {
     private let activityLabel: UILabel = {
         let l = UILabel()
         l.translatesAutoresizingMaskIntoConstraints = false
-        l.font = UIFont.systemFont(ofSize: 14)
+        l.font = UIFont(cocoFont: .semibold, size: 16)
         l.textColor = .white
         return l
     }()
@@ -60,7 +61,7 @@ class OverviewCell: UICollectionViewCell {
     private let durationLabel: UILabel = {
         let l = UILabel()
         l.translatesAutoresizingMaskIntoConstraints = false
-        l.font = UIFont.systemFont(ofSize: 14)
+        l.font = UIFont(cocoFont: .regular, size: 16)
         l.textColor = .white
         l.textAlignment = .right
         return l
@@ -69,14 +70,16 @@ class OverviewCell: UICollectionViewCell {
     private let startTimeLabel: UILabel = {
         let l = UILabel()
         l.translatesAutoresizingMaskIntoConstraints = false
-        l.font = UIFont.systemFont(ofSize: 8)
+        l.font = UIFont(cocoFont: .light, size: 10)
+        l.textColor = UIColor(cocoColor: .whiteBlue)
         return l
     }()
     
     private let endTimeLabel: UILabel = {
         let l = UILabel()
         l.translatesAutoresizingMaskIntoConstraints = false
-        l.font = UIFont.systemFont(ofSize: 8)
+        l.font = UIFont(cocoFont: .light, size: 10)
+        l.textColor = UIColor(cocoColor: .whiteBlue)
         l.textAlignment = .right
         return l
     }()
@@ -122,7 +125,7 @@ class OverviewCell: UICollectionViewCell {
     }
     
     private func addContraints() {
-        activityLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 18).isActive = true
+        activityLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24).isActive = true
         activityLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
         durationLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -18).isActive = true
@@ -131,7 +134,7 @@ class OverviewCell: UICollectionViewCell {
         timelineView.leadingAnchor.constraint(greaterThanOrEqualTo: activityLabel.trailingAnchor).isActive = true
         timelineView.trailingAnchor.constraint(greaterThanOrEqualTo: durationLabel.leadingAnchor).isActive = true
         timelineView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 8).isActive = true
-        timelineView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        timelineView.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 12).isActive = true
         timelineView.widthAnchor.constraint(lessThanOrEqualToConstant: 68).isActive = true
         timelineView.heightAnchor.constraint(equalToConstant: 1).isActive = true
         

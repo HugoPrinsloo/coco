@@ -12,6 +12,7 @@ public extension UIColor {
     enum Color {
         case midnightBlue
         case washoutBlue
+        case whiteBlue
         
         var name: String {
             switch self {
@@ -19,6 +20,8 @@ public extension UIColor {
                 return "Midnight Blue"
             case .washoutBlue:
                 return "Washout Blue"
+            case .whiteBlue:
+                return "White Blue"
             }
         }
     }
