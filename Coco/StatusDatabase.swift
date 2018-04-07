@@ -85,12 +85,6 @@ class CocoDatabase: StatusDatabase {
     }
     
     
-    func prepareForWatch(_ activityItems: [[String: String]]) {
-        for item in activityItems {
-            
-        }
-    }
-    
     func addItem(item: ActivityItem) {
         items.append(item)
         //generating a new key inside item
