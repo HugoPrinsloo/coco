@@ -20,7 +20,7 @@ class InitialViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if Auth.auth().currentUser != nil {
-            let storyboard = UIStoryboard(name: "Main", bundle: Bundle(for: OverviewViewController.self))
+            let storyboard = UIStoryboard(name: "Main", bundle: Bundle(for: OriginalOverviewViewController.self))
             let vc = storyboard.instantiateViewController(withIdentifier: "Overview")
             navigationController?.present(vc, animated: true, completion: nil)
         }

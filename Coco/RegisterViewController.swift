@@ -39,7 +39,7 @@ class RegisterViewController: UIViewController {
                     }
                 })
             } else {
-                print("Registration error: \(error)")
+                print("Registration error: \(String(describing: error))")
             }
         }
     }
