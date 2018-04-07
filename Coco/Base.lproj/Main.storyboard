@@ -224,10 +224,10 @@
             </objects>
             <point key="canvasLocation" x="3684" y="640.64039408866995"/>
         </scene>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="jWg-el-9eX">
             <objects>
-                <viewController id="nls-Fv-IwB" sceneMemberID="viewController">
+                <viewController id="nls-Fv-IwB" customClass="LoginViewController" customModule="Coco" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rfo-HA-hat">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -250,11 +250,18 @@
                                 <rect key="frame" x="168" y="664" width="38" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="handleLoginButtonTapped:" destination="nls-Fv-IwB" eventType="touchUpInside" id="xoP-v1-3mx"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="S9J-uS-I77"/>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="dKf-CU-GCO" id="oHT-zR-I9B"/>
+                        <outlet property="passwordTextField" destination="xSo-NZ-349" id="AkO-qv-2cv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xva-94-6zM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
