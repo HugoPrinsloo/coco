@@ -38,7 +38,7 @@ extension OverviewViewController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! OverviewCell
-        cell.configure("Gym", duration: "45", startTime: "09:00", endTime: "09:45")
+        cell.configure("Gym", duration: "45 Min", startTime: "09:00", endTime: "09:45")
         return cell
     }
     
@@ -62,24 +62,29 @@ class OverviewCell: UICollectionViewCell {
         l.translatesAutoresizingMaskIntoConstraints = false
         l.font = UIFont.systemFont(ofSize: 14)
         l.textColor = .white
+        l.textAlignment = .right
         return l
     }()
     
     private let startTimeLabel: UILabel = {
         let l = UILabel()
         l.translatesAutoresizingMaskIntoConstraints = false
+        l.font = UIFont.systemFont(ofSize: 8)
         return l
     }()
     
     private let endTimeLabel: UILabel = {
         let l = UILabel()
         l.translatesAutoresizingMaskIntoConstraints = false
+        l.font = UIFont.systemFont(ofSize: 8)
+        l.textAlignment = .right
         return l
     }()
     
     private let timelineView: UIView = {
         let l = UIView()
         l.translatesAutoresizingMaskIntoConstraints = false
+        l.backgroundColor = UIColor.red
         return l
     }()
 
@@ -87,6 +92,8 @@ class OverviewCell: UICollectionViewCell {
     func configure(_ activity: String, duration: String, startTime: String, endTime: String) {
         activityLabel.text = activity
         durationLabel.text = duration
+        startTimeLabel.text = startTime
+        endTimeLabel.text = endTime
     }
     
     override init(frame: CGRect) {
@@ -102,9 +109,9 @@ class OverviewCell: UICollectionViewCell {
     private func commonInit() {
         addSubview(activityLabel)
         addSubview(durationLabel)
-//        addSubview(startTimeLabel)
-//        addSubview(endTimeLabel)
-//        addSubview(timelineView)
+        addSubview(startTimeLabel)
+        addSubview(endTimeLabel)
+        addSubview(timelineView)
         
         backgroundColor = UIColor(cocoColor: .washoutBlue)
 
@@ -120,6 +127,19 @@ class OverviewCell: UICollectionViewCell {
         
         durationLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -18).isActive = true
         durationLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        
+        timelineView.leadingAnchor.constraint(greaterThanOrEqualTo: activityLabel.trailingAnchor).isActive = true
+        timelineView.trailingAnchor.constraint(greaterThanOrEqualTo: durationLabel.leadingAnchor).isActive = true
+        timelineView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 8).isActive = true
+        timelineView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        timelineView.widthAnchor.constraint(lessThanOrEqualToConstant: 68).isActive = true
+        timelineView.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        
+        startTimeLabel.leadingAnchor.constraint(equalTo: timelineView.leadingAnchor).isActive = true
+        startTimeLabel.bottomAnchor.constraint(equalTo: timelineView.topAnchor, constant: 0).isActive = true
+        
+        endTimeLabel.trailingAnchor.constraint(equalTo: timelineView.trailingAnchor).isActive = true
+        endTimeLabel.bottomAnchor.constraint(equalTo: timelineView.topAnchor, constant: 0).isActive = true
 
     }
 }
