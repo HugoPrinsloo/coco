@@ -19,7 +19,7 @@ class StatusTableViewController: UITableViewController {
             self?.tableView.reloadData()
         }
         
-        db.fetch()
+        db.fetch(completion: nil)
     }
 }
 

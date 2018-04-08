@@ -28,8 +28,6 @@ class CocoDatabase: StatusDatabase {
     
     private var itemsToWatch: [String?] = []
     
-
-    
     var db: DatabaseReference?
         
     var itemsDidUpdate: (() -> Void)?
@@ -42,7 +40,7 @@ class CocoDatabase: StatusDatabase {
         db = Database.database().reference().child("user: \(uid)")
     }
     
-    func fetch() {
+    func fetch(completion: (() -> Swift.Void)? = nil) {
         db?.observe(DataEventType.value, with: { (snapshot) in
             
             //if the reference have some values
@@ -64,7 +62,7 @@ class CocoDatabase: StatusDatabase {
 
                     //creating artist object with model and fetched values
                     let activityItem = ActivityItem(id: id, name: name, duration: duration, startTime: startTime, endTime: endTime)
-                    
+                    print(activityItem)
                     //appending it to list
                     self.items.append(activityItem)
                     self.itemsToWatch.append(activityItem.name)
@@ -75,8 +73,7 @@ class CocoDatabase: StatusDatabase {
                 self.sendToWatch()
             }
         })
-        
-
+        completion?()
     }
     
     func sendToWatch() {
@@ -90,27 +87,94 @@ class CocoDatabase: StatusDatabase {
         }
     }
     
+    func startActivity(_ item: ActivityItem) {
+        if let key = db?.childByAutoId().key {
+            //creating item with the given values
+            let activity = ["id":key,
+                            "name": item.name,
+                            "duration": "1",
+                            "startTime": currentDate(),
+                            "endTime": "1",
+                            ]
+            
+            db?.child(key).setValue(activity)
+        }
+        items.append(item)
+    }
+    
+    func endActivity() {
+        let item: ActivityItem = self.items.last!
+        //generating a new key inside item
+        //and also getting the generated key
+        if let key: String = item.id {
+            //creating item with the given values
+            let activity = ["id":key,
+                            "name": item.name,
+                            "duration": "45 Min",
+                            "startTime": item.startTime,
+                            "endTime": currentDate()
+            ]
+            
+            //adding the artist inside the generated unique key
+            
+            db?.child(key).setValue(activity)
+        }
+    }
+    
+    func fetchDated() {
+        
+        db?.observe(DataEventType.value, with: { (snapshot) in
+            
+            //if the reference have some values
+            if snapshot.childrenCount > 0 {
+                
+                //clearing the list
+                self.items.removeAll()
+                self.itemsToWatch.removeAll()
+                
+                //iterating through all the values
+                for item in snapshot.children.allObjects as! [DataSnapshot] {
+                    //getting values
+                    let object = item.value as? [String: String]
+                    let name  = object?["name"]
+                    let duration = object?["duration"]
+                    let id = object?["id"]
+                    let startTime = object?["startTime"]
+                    let endTime = object?["endTime"]
+                    
+                    //creating artist object with model and fetched values
+                    let activityItem = ActivityItem(id: id, name: name, duration: duration, startTime: startTime, endTime: endTime)
+                    print(activityItem)
+                    //appending it to list
+                    self.items.append(activityItem)
+                    self.itemsToWatch.append(activityItem.name)
+                }
+                
+                //reloading the tableview
+                self.itemsDidUpdate!()
+                self.sendToWatch()
+            }
+        })
+    }
     
     func addItem(item: ActivityItem) {
-
+        
         items.append(item)
         //generating a new key inside item
         //and also getting the generated key
-            let date = currentDate()
-            let base = db?.child(date)
+        
+        if let key = db?.childByAutoId().key {
+            //creating item with the given values
+            let activity = ["id":key,
+                            "name": item.name,
+                            "duration": item.duration,
+                            "startTime": item.startTime,
+                            "endTime": item.endTime,
+                            ]
             
-            if let key = db?.childByAutoId().key {
-                //creating item with the given values
-                let activity = ["id":key,
-                                "name": item.name,
-                                "duration": item.duration,
-                                "startTime": item.startTime,
-                                "endTime": item.endTime,
-                                ]
-                
-                //adding the artist inside the generated unique key
-                
-                base?.child(key).setValue(activity)
+            //adding the artist inside the generated unique key
+            
+            db?.child(key).setValue(activity)
         }
     }
     
@@ -118,7 +182,7 @@ class CocoDatabase: StatusDatabase {
         let date = Date()
         let formatter = DateFormatter()
 
-        formatter.dateFormat = "dd-MM-yyyy"
+        formatter.dateFormat = "dd-MM-yyyy HH:mm"
 
         return formatter.string(from: date)
     }

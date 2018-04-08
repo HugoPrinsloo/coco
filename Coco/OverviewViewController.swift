@@ -14,6 +14,9 @@ import WatchConnectivity
 class OverviewViewController: UIViewController {
     
     private let db = CocoDatabase()
+    private let itemManager = ActivityItemManager()
+    
+    static var activityItems: [Activity]?
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -37,54 +40,61 @@ class OverviewViewController: UIViewController {
         }
         
         db.fetch()
-        NotificationCenter.default.addObserver(self, selector: #selector(watchInfoReceived), name: NSNotification.Name(rawValue: "receivedWatchData"), object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(watchInfoReceived), name: NSNotification.Name(rawValue: "receivedWatchData"), object: nil)
+   
+        OverviewViewController.activityItems = ActivityItemManager.loadItems()
     }
     
-    @objc func watchInfoReceived(info: NSNotification) {
-        
-    }
+//    @objc func watchInfoReceived(info: NSNotification) {
+//
+//    }
     
     @IBAction func handleAddButtonTapped(_ sender: UIButton) {
-        //1. Create the alert controller.
-        let alert = UIAlertController(title: "Add Item", message: nil, preferredStyle: .alert)
         
-        //2. Add the text field. You can configure it however you need.
-        alert.addTextField { (textField) in
-            textField.becomeFirstResponder()
-            textField.placeholder = "Activity"
-        }
+        let vc = ActivitySelectionTableViewController()
+        vc.delegate = self
+        navigationController?.pushViewController(vc, animated: true)
         
-        alert.addTextField { (textField2) in
-            textField2.placeholder = "Start Time"
-            
-        }
-        
-        alert.addTextField { (textField2) in
-            textField2.placeholder = "End Time"
-            
-        }
-        
-        alert.addTextField { (textField2) in
-            textField2.placeholder = "Duration (min)"
-            
-        }
-        
-        
-        
-        // 3. Grab the value from the text field, and print it when the user clicks OK.
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
-            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
-            let start = alert?.textFields![1] // Force unwrapping because we know it exists.
-            let end = alert?.textFields![2] // Force unwrapping because we know it exists.
-            let dur = alert?.textFields![3] // Force unwrapping because we know it exists.
 
-            if let text = textField?.text {
-                self.db.addItem(item: ActivityItem(id: nil, name: text, duration: dur?.text, startTime: start?.text, endTime: end?.text))
-            }
-        }))
-        
-        // 4. Present the alert.
-        self.present(alert, animated: true, completion: nil)
+                
+//        //1. Create the alert controller.
+//        let alert = UIAlertController(title: "Add Item", message: nil, preferredStyle: .alert)
+//
+//        //2. Add the text field. You can configure it however you need.
+//        alert.addTextField { (textField) in
+//            textField.becomeFirstResponder()
+//            textField.placeholder = "Activity"
+//        }
+//
+//        alert.addTextField { (textField2) in
+//            textField2.placeholder = "Start Time"
+//
+//        }
+//
+//        alert.addTextField { (textField2) in
+//            textField2.placeholder = "End Time"
+//
+//        }
+//
+//        alert.addTextField { (textField2) in
+//            textField2.placeholder = "Duration (min)"
+//
+//        }
+//
+//        // 3. Grab the value from the text field, and print it when the user clicks OK.
+//        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
+//            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
+//            let start = alert?.textFields![1] // Force unwrapping because we know it exists.
+//            let end = alert?.textFields![2] // Force unwrapping because we know it exists.
+//            let dur = alert?.textFields![3] // Force unwrapping because we know it exists.
+//
+//            if let text = textField?.text {
+//                self.db.addItem(item: ActivityItem(id: nil, name: text, duration: dur?.text, startTime: start?.text, endTime: end?.text))
+//            }
+//        }))
+//
+//        // 4. Present the alert.
+//        self.present(alert, animated: true, completion: nil)
     }
 }
 
@@ -107,6 +117,26 @@ extension OverviewViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width - 20, height: 62)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        db.endActivity()
+    }
+}
+
+extension OverviewViewController: ActivitySelectionDelegate {
+    func activitySelectionController(_ activitySelectionController: ActivitySelectionTableViewController, didSelect item: Activity) {
+        activitySelectionController.dismiss(animated: true, completion: nil)
+        db.startActivity(ActivityItem(id: nil, name: item.name, duration: nil, startTime: currentTime(), endTime: nil))
+    }
+    
+     func currentTime() -> String {
+        let date = Date()
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: date)
+        let minutes = calendar.component(.minute, from: date)
+        return "\(hour):\(minutes)"
+    }
+
 }
 
 
