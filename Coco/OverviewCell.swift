@@ -11,6 +11,13 @@ import Lottie
 
 class OverviewCell: UICollectionViewCell {
     
+    enum State {
+        case open
+        case closed
+    }
+    
+    var currentState: State = .open
+    
     private let activityLabel: UILabel = {
         let l = UILabel()
         l.translatesAutoresizingMaskIntoConstraints = false
@@ -55,12 +62,44 @@ class OverviewCell: UICollectionViewCell {
     private let animationView: AnimationView = {
         let a = AnimationView(animation: "waves_", contentMode: .scaleToFill)
         a.translatesAutoresizingMaskIntoConstraints = false
+        a.isHidden = true
         a.alpha = 0.5
         return a
     }()
+
+    func configure(state: State, activity: String, startTime: String?, endTime: String?, duration: String?) {
+        activityLabel.text = activity
+        
+        switch state {
+        case .open:
+            animationView.isHidden = false
+            animationView.startAnimation()
+            
+            startTimeLabel.alpha = 0
+            endTimeLabel.alpha = 0
+            timelineView.alpha = 0
+            durationLabel.alpha = 0
+            print("Open \n")
+        case .closed:
+            animationView.stopAnimation()
+            animationView.isHidden = true
+            
+            let start: String = startTime?.components(separatedBy: " ").last ?? ""
+            startTimeLabel.text = start
+            let end: String = endTime?.components(separatedBy: " ").last ?? ""
+            endTimeLabel.text = end
+            
+            durationLabel.text = duration
+            
+            startTimeLabel.alpha = 1
+            endTimeLabel.alpha = 1
+            timelineView.alpha = 1
+            durationLabel.alpha = 1
+            print("Closed \n")
+        }
+    }
     
-    private var gradient: CAGradientLayer = CAGradientLayer()
-    
+    /*
     func configure(_ activity: String, duration: String, startTime: String, endTime: String) {
         activityLabel.text = activity
         endTimeLabel.text = endTime
@@ -79,47 +118,39 @@ class OverviewCell: UICollectionViewCell {
             configureForEndTime(false)
         }
     }
-    
-    private func configureForEndTime(_ finised: Bool) {
-        backgroundColor = UIColor(cocoColor: .washoutBlue)
-        
-        gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
-        gradient.endPoint = CGPoint(x: 1.0, y: 0.5)
-        
-        gradient.frame = bounds
-        gradient.colors = [UIColor(cocoColor: .midnightPurple).withAlphaComponent(0.4).cgColor, UIColor(cocoColor: .midnightPink).withAlphaComponent(0.4).cgColor]
-        
-        layer.insertSublayer(gradient, at: 0)
-        
-        gradient.isHidden = finised
-        
-        if finised {
-            
-            let animator = UIViewPropertyAnimator(duration: 5, curve: .easeOut, animations: nil)
-            animator.addAnimations({ [weak self] in
-                self?.startTimeLabel.alpha = 1
-                self?.endTimeLabel.alpha = 1
-                self?.timelineView.alpha = 1
-                self?.animationView.alpha = 0
-            })
-            animator.addCompletion({ [weak self] (_) in
-                self?.animationView.stopAnimation()
-                self?.animationView.removeFromSuperview()
-            })
-            animator.startAnimation()
+ 
+ */
 
-            
-        } else {
-            animationView.startAnimation()
-            activityLabel.transform = CGAffineTransform(translationX: 1.5, y: 2)
-            startTimeLabel.alpha = 0
-            endTimeLabel.alpha = 0
-            timelineView.alpha = 0
-        }
-        
-        animationView.isHidden = finised
-    }
-    
+    //    private func configureForEndTime(_ finised: Bool) {
+//        backgroundColor = UIColor(cocoColor: .washoutBlue)
+//
+//        if finised {
+//
+//            let animator = UIViewPropertyAnimator(duration: 5, curve: .easeOut, animations: nil)
+//            animator.addAnimations({ [weak self] in
+//                self?.startTimeLabel.alpha = 1
+//                self?.endTimeLabel.alpha = 1
+//                self?.timelineView.alpha = 1
+//                self?.animationView.alpha = 0
+//            })
+//            animator.addCompletion({ [weak self] (_) in
+//                self?.animationView.stopAnimation()
+//                self?.animationView.removeFromSuperview()
+//            })
+//            animator.startAnimation()
+//
+//
+//        } else {
+//            animationView.startAnimation()
+//            activityLabel.transform = CGAffineTransform(translationX: 1.5, y: 2)
+//            startTimeLabel.alpha = 0
+//            endTimeLabel.alpha = 0
+//            timelineView.alpha = 0
+//        }
+//
+//        animationView.isHidden = finised
+//    }
+//
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -142,6 +173,8 @@ class OverviewCell: UICollectionViewCell {
         clipsToBounds = true
         
         addContraints()
+        
+        backgroundColor = UIColor(cocoColor: .washoutBlue)
     }
     
     private func addContraints() {

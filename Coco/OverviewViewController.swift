@@ -18,6 +18,7 @@ class OverviewViewController: UIViewController {
     
     static var activityItems: [Activity]?
     
+    @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     
     let watchSession = WCSession.default
@@ -28,21 +29,27 @@ class OverviewViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.configureNavigationBar(backgroundColor: UIColor(cocoColor: .midnightBlue), tintColor: UIColor.white, shadowColor: UIColor.white, textColor: UIColor.white)
         view.backgroundColor = UIColor(cocoColor: .midnightBlue)
+        addButton.titleLabel?.font = UIFont(cocoFont: .medium, size: 18)
 
         collectionView.backgroundColor = UIColor.clear
         
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.prefetchDataSource = self
+        
         collectionView.register(OverviewCell.self, forCellWithReuseIdentifier: "Cell")
         
         db.itemsDidUpdate = { [weak self] in
             self?.collectionView.reloadData()
+            self?.addButton.setTitle((self?.db.itemIsOpen)! ? "Stop Activity" : "Add Activity", for: .normal)
         }
         
         db.fetch()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(watchInfoReceived), name: NSNotification.Name(rawValue: "receivedWatchData"), object: nil)
    
         OverviewViewController.activityItems = ActivityItemManager.loadItems()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -54,7 +61,6 @@ class OverviewViewController: UIViewController {
                 self.navigationController?.present(vc, animated: true, completion: nil)
             }
         }
-        
     }
     
     @objc func watchInfoReceived(info: NSNotification) {
@@ -62,10 +68,13 @@ class OverviewViewController: UIViewController {
     }
     
     @IBAction func handleAddButtonTapped(_ sender: UIButton) {
-        
-        let vc = ActivitySelectionTableViewController()
-        vc.delegate = self
-        present(vc, animated: true, completion: nil)
+        if db.itemIsOpen {
+            db.endActivity()
+        } else {
+            let vc = ActivitySelectionTableViewController()
+            vc.delegate = self
+            present(vc, animated: true, completion: nil)
+        }
     }
 }
 
@@ -81,7 +90,11 @@ extension OverviewViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! OverviewCell
         let item = db.itemAtIndex(indexPath.item)
-        cell.configure(item.name ?? "", duration: item.duration, startTime: item.startTime, endTime: item.endTime)
+        let isOpen: Bool = item.endTime == ""
+        let state: OverviewCell.State = isOpen ? .open : .closed
+        
+        print("Index no: \(indexPath.item)")
+        cell.configure(state: state, activity: item.name ?? "", startTime: item.startTime, endTime: item.endTime, duration: item.duration)
         return cell
     }
     
@@ -94,13 +107,22 @@ extension OverviewViewController: UICollectionViewDelegate, UICollectionViewData
     }
 }
 
+extension OverviewViewController: UICollectionViewDataSourcePrefetching {
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+//        db.itemAtIndex(indexPaths)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
+        
+    }
+}
+
 extension OverviewViewController: ActivitySelectionDelegate {
     func activitySelectionController(_ activitySelectionController: ActivitySelectionTableViewController, didSelect item: Activity) {
         activitySelectionController.dismiss(animated: true, completion: nil)
         db.startActivity(ActivityItem(id: nil, name: item.name, duration: nil, startTime: nil, endTime: nil, date: nil))
     }
 }
-
 
 
 

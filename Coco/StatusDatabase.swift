@@ -32,6 +32,10 @@ class CocoDatabase: StatusDatabase {
         
     var itemsDidUpdate: (() -> Void)?
     
+    var itemIsOpen: Bool {
+        return items.first?.endTime == ""
+    }
+    
     init() {
         guard let uid = Auth.auth().currentUser?.uid else {
             //TODO: Logout
@@ -72,7 +76,7 @@ class CocoDatabase: StatusDatabase {
                 //reloading the tableview
                 self.itemsDidUpdate!()
                 self.sendToWatch()
-            }
+            } 
         })
         completion?()
     }
