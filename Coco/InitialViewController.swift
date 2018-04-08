@@ -22,7 +22,9 @@ class InitialViewController: UIViewController {
         if Auth.auth().currentUser != nil {
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle(for: OverviewViewController.self))
             let vc = storyboard.instantiateViewController(withIdentifier: "Overview")
-            navigationController?.present(vc, animated: true, completion: nil)
+            DispatchQueue.main.async {
+                self.navigationController?.present(vc, animated: true, completion: nil)
+            }
         }
 
     }

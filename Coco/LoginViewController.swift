@@ -24,7 +24,9 @@ class LoginViewController: UIViewController {
         
         Auth.auth().signIn(withEmail: email, password: pass) { (user, error) in
             if error == nil && user != nil {
-                self.navigationController?.dismiss(animated: true, completion: nil)
+                DispatchQueue.main.async {
+                    self.navigationController?.dismiss(animated: true, completion: nil)
+                }
             } else {
                 print("Failed to login with error: \(String(describing: error))")
             }

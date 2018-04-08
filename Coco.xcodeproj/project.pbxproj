@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0C87FC513A64515760455FAF /* Pods_CocoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BEDFB6FB307731A55B1B5FB /* Pods_CocoTests.framework */; };
+		6E42D4372078D110003CF303 /* OverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E42D4362078D110003CF303 /* OverviewViewController.swift */; };
+		6E4697192079411F00AD05FC /* ActivitySelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4697182079411F00AD05FC /* ActivitySelectionTableViewController.swift */; };
 		6E4D4BBB2072B82D000922C3 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4D4BBA2072B82D000922C3 /* RegisterViewController.swift */; };
-		6E62771A20725D480056EDA6 /* OverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E62771920725D480056EDA6 /* OverviewViewController.swift */; };
+		6E62771A20725D480056EDA6 /* OriginalOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E62771920725D480056EDA6 /* OriginalOverviewViewController.swift */; };
 		6E62779420726ECC0056EDA6 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E62779220726ECC0056EDA6 /* Interface.storyboard */; };
 		6E62779620726ECC0056EDA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E62779520726ECC0056EDA6 /* Assets.xcassets */; };
 		6E62779D20726ECC0056EDA6 /* CocoWatch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6E62779C20726ECC0056EDA6 /* CocoWatch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -22,7 +24,19 @@
 		6E6DB6F4206FB417005C2CEB /* StatusTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6DB6F3206FB417005C2CEB /* StatusTableViewController.swift */; };
 		6E6DB6F6206FB6F6005C2CEB /* StatusDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6DB6F5206FB6F6005C2CEB /* StatusDatabase.swift */; };
 		6E718F7D207356FF00BB935D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E718F7C207356FF00BB935D /* LoginViewController.swift */; };
+		6E775C292078FFC0001799F8 /* OverviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E775C282078FFC0001799F8 /* OverviewCell.swift */; };
 		6EAEF4D3206FA37100334A82 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EAEF4D2206FA37100334A82 /* GoogleService-Info.plist */; };
+		6EBEA2312078EC1A00221BD5 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6EBEA2302078EC1A00221BD5 /* Color.xcassets */; };
+		6EBEA2332078F05A00221BD5 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBEA2322078F05A00221BD5 /* UIImage+Extensions.swift */; };
+		6EBEA2362078F09600221BD5 /* UINavigationBar+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBEA2352078F09600221BD5 /* UINavigationBar+Extensions.swift */; };
+		6EBEA2382078F0BC00221BD5 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBEA2372078F0BC00221BD5 /* UIColor+Extensions.swift */; };
+		6EBEA2402078F63100221BD5 /* SF-Pro-Text-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6EBEA23A2078F63000221BD5 /* SF-Pro-Text-Heavy.otf */; };
+		6EBEA2412078F63100221BD5 /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6EBEA23B2078F63000221BD5 /* SF-Pro-Text-Regular.otf */; };
+		6EBEA2422078F63100221BD5 /* SF-Pro-Text-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6EBEA23C2078F63000221BD5 /* SF-Pro-Text-Bold.otf */; };
+		6EBEA2432078F63100221BD5 /* SF-Pro-Text-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6EBEA23D2078F63000221BD5 /* SF-Pro-Text-Medium.otf */; };
+		6EBEA2442078F63100221BD5 /* SF-Pro-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6EBEA23E2078F63100221BD5 /* SF-Pro-Text-Semibold.otf */; };
+		6EBEA2452078F63100221BD5 /* SF-Pro-Text-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6EBEA23F2078F63100221BD5 /* SF-Pro-Text-Light.otf */; };
+		6EBEA2532078F71600221BD5 /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBEA2522078F71600221BD5 /* UIFont+Extensions.swift */; };
 		6EC63D722072C29C004CF135 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC63D712072C29C004CF135 /* InitialViewController.swift */; };
 		6ED3CD19206FA15900C26F5E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED3CD18206FA15900C26F5E /* AppDelegate.swift */; };
 		6ED3CD1B206FA15900C26F5E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED3CD1A206FA15900C26F5E /* ViewController.swift */; };
@@ -97,8 +111,10 @@
 		5971E38C7BCEED6D7EE8BF00 /* Pods-CocoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CocoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CocoUITests/Pods-CocoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5A75DD1DDD9F89C4F642B4DE /* Pods-Coco.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Coco.release.xcconfig"; path = "Pods/Target Support Files/Pods-Coco/Pods-Coco.release.xcconfig"; sourceTree = "<group>"; };
 		67E279A5E510F8EFDE26D756 /* Pods_CocoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CocoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E42D4362078D110003CF303 /* OverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewViewController.swift; sourceTree = "<group>"; };
+		6E4697182079411F00AD05FC /* ActivitySelectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitySelectionTableViewController.swift; sourceTree = "<group>"; };
 		6E4D4BBA2072B82D000922C3 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
-		6E62771920725D480056EDA6 /* OverviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverviewViewController.swift; sourceTree = "<group>"; };
+		6E62771920725D480056EDA6 /* OriginalOverviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OriginalOverviewViewController.swift; sourceTree = "<group>"; };
 		6E62779020726ECC0056EDA6 /* CocoWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CocoWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E62779320726ECC0056EDA6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		6E62779520726ECC0056EDA6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -114,7 +130,19 @@
 		6E6DB6F3206FB417005C2CEB /* StatusTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusTableViewController.swift; sourceTree = "<group>"; };
 		6E6DB6F5206FB6F6005C2CEB /* StatusDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusDatabase.swift; sourceTree = "<group>"; };
 		6E718F7C207356FF00BB935D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		6E775C282078FFC0001799F8 /* OverviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewCell.swift; sourceTree = "<group>"; };
 		6EAEF4D2206FA37100334A82 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		6EBEA2302078EC1A00221BD5 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
+		6EBEA2322078F05A00221BD5 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		6EBEA2352078F09600221BD5 /* UINavigationBar+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Extensions.swift"; sourceTree = "<group>"; };
+		6EBEA2372078F0BC00221BD5 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		6EBEA23A2078F63000221BD5 /* SF-Pro-Text-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Heavy.otf"; sourceTree = "<group>"; };
+		6EBEA23B2078F63000221BD5 /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
+		6EBEA23C2078F63000221BD5 /* SF-Pro-Text-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Bold.otf"; sourceTree = "<group>"; };
+		6EBEA23D2078F63000221BD5 /* SF-Pro-Text-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Medium.otf"; sourceTree = "<group>"; };
+		6EBEA23E2078F63100221BD5 /* SF-Pro-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Semibold.otf"; sourceTree = "<group>"; };
+		6EBEA23F2078F63100221BD5 /* SF-Pro-Text-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Light.otf"; sourceTree = "<group>"; };
+		6EBEA2522078F71600221BD5 /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		6EC63D712072C29C004CF135 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		6ED3CD15206FA15900C26F5E /* Coco.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Coco.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ED3CD18206FA15900C26F5E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -193,6 +221,7 @@
 		6E62771B207260FA0056EDA6 /* demo */ = {
 			isa = PBXGroup;
 			children = (
+				6E62771920725D480056EDA6 /* OriginalOverviewViewController.swift */,
 				6ED3CD1A206FA15900C26F5E /* ViewController.swift */,
 				6E6DB6F3206FB417005C2CEB /* StatusTableViewController.swift */,
 			);
@@ -221,6 +250,31 @@
 				6E6277B62072707A0056EDA6 /* RowController.swift */,
 			);
 			path = "CocoWatch Extension";
+			sourceTree = "<group>";
+		};
+		6EBEA2342078F06600221BD5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6EBEA2322078F05A00221BD5 /* UIImage+Extensions.swift */,
+				6EBEA2372078F0BC00221BD5 /* UIColor+Extensions.swift */,
+				6EBEA2522078F71600221BD5 /* UIFont+Extensions.swift */,
+				6EBEA2352078F09600221BD5 /* UINavigationBar+Extensions.swift */,
+				6EBEA2392078F5DC00221BD5 /* Fonts */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6EBEA2392078F5DC00221BD5 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				6EBEA23C2078F63000221BD5 /* SF-Pro-Text-Bold.otf */,
+				6EBEA23A2078F63000221BD5 /* SF-Pro-Text-Heavy.otf */,
+				6EBEA23F2078F63100221BD5 /* SF-Pro-Text-Light.otf */,
+				6EBEA23D2078F63000221BD5 /* SF-Pro-Text-Medium.otf */,
+				6EBEA23B2078F63000221BD5 /* SF-Pro-Text-Regular.otf */,
+				6EBEA23E2078F63100221BD5 /* SF-Pro-Text-Semibold.otf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		6ED3CD0C206FA15900C26F5E = {
@@ -253,13 +307,17 @@
 			isa = PBXGroup;
 			children = (
 				6ED3CD18206FA15900C26F5E /* AppDelegate.swift */,
-				6E62771920725D480056EDA6 /* OverviewViewController.swift */,
 				6E4D4BBA2072B82D000922C3 /* RegisterViewController.swift */,
+				6E42D4362078D110003CF303 /* OverviewViewController.swift */,
+				6E4697182079411F00AD05FC /* ActivitySelectionTableViewController.swift */,
 				6E718F7C207356FF00BB935D /* LoginViewController.swift */,
+				6E775C282078FFC0001799F8 /* OverviewCell.swift */,
 				6EC63D712072C29C004CF135 /* InitialViewController.swift */,
 				6E6DB6F5206FB6F6005C2CEB /* StatusDatabase.swift */,
 				6ED3CD1C206FA15900C26F5E /* Main.storyboard */,
 				6ED3CD1F206FA15900C26F5E /* Assets.xcassets */,
+				6EBEA2302078EC1A00221BD5 /* Color.xcassets */,
+				6EBEA2342078F06600221BD5 /* Supporting Files */,
 				6ED3CD21206FA15A00C26F5E /* LaunchScreen.storyboard */,
 				6ED3CD24206FA15A00C26F5E /* Info.plist */,
 				6EAEF4D2206FA37100334A82 /* GoogleService-Info.plist */,
@@ -476,10 +534,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EBEA2452078F63100221BD5 /* SF-Pro-Text-Light.otf in Resources */,
 				6ED3CD23206FA15A00C26F5E /* LaunchScreen.storyboard in Resources */,
+				6EBEA2402078F63100221BD5 /* SF-Pro-Text-Heavy.otf in Resources */,
+				6EBEA2442078F63100221BD5 /* SF-Pro-Text-Semibold.otf in Resources */,
+				6EBEA2422078F63100221BD5 /* SF-Pro-Text-Bold.otf in Resources */,
 				6EAEF4D3206FA37100334A82 /* GoogleService-Info.plist in Resources */,
+				6EBEA2312078EC1A00221BD5 /* Color.xcassets in Resources */,
 				6ED3CD20206FA15900C26F5E /* Assets.xcassets in Resources */,
 				6ED3CD1E206FA15900C26F5E /* Main.storyboard in Resources */,
+				6EBEA2412078F63100221BD5 /* SF-Pro-Text-Regular.otf in Resources */,
+				6EBEA2432078F63100221BD5 /* SF-Pro-Text-Medium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -676,10 +741,17 @@
 				6E6DB6F6206FB6F6005C2CEB /* StatusDatabase.swift in Sources */,
 				6EC63D722072C29C004CF135 /* InitialViewController.swift in Sources */,
 				6E6DB6F4206FB417005C2CEB /* StatusTableViewController.swift in Sources */,
-				6E62771A20725D480056EDA6 /* OverviewViewController.swift in Sources */,
+				6E4697192079411F00AD05FC /* ActivitySelectionTableViewController.swift in Sources */,
+				6E62771A20725D480056EDA6 /* OriginalOverviewViewController.swift in Sources */,
 				6E718F7D207356FF00BB935D /* LoginViewController.swift in Sources */,
 				6E4D4BBB2072B82D000922C3 /* RegisterViewController.swift in Sources */,
+				6E775C292078FFC0001799F8 /* OverviewCell.swift in Sources */,
 				6ED3CD1B206FA15900C26F5E /* ViewController.swift in Sources */,
+				6EBEA2382078F0BC00221BD5 /* UIColor+Extensions.swift in Sources */,
+				6EBEA2362078F09600221BD5 /* UINavigationBar+Extensions.swift in Sources */,
+				6EBEA2332078F05A00221BD5 /* UIImage+Extensions.swift in Sources */,
+				6EBEA2532078F71600221BD5 /* UIFont+Extensions.swift in Sources */,
+				6E42D4372078D110003CF303 /* OverviewViewController.swift in Sources */,
 				6ED3CD19206FA15900C26F5E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
