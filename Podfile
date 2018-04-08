@@ -12,6 +12,8 @@ pod 'Firebase/Database'
 pod 'CodableFirebase'
 pod 'Firebase/Auth'
 
+pod 'lottie-ios'
+
 
   target 'CocoTests' do
     inherit! :search_paths

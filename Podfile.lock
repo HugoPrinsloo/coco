@@ -40,6 +40,7 @@ PODS:
   - GoogleToolboxForMac/NSString+URLArguments (2.1.3)
   - GTMSessionFetcher/Core (1.1.14)
   - leveldb-library (1.20)
+  - lottie-ios (2.5.0)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
     - nanopb/encode (= 0.3.8)
@@ -51,6 +52,7 @@ DEPENDENCIES:
   - Firebase
   - Firebase/Auth
   - Firebase/Database
+  - lottie-ios
 
 SPEC CHECKSUMS:
   CodableFirebase: 090c5b4c9ad67c9f4fddc3b00d168ec38cad3b14
@@ -63,8 +65,9 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
   GTMSessionFetcher: 390ea358e5a0d0133153806f744662dad933d06b
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
+  lottie-ios: d699fdee68d7b63e721d949388b015fef1aaa4ac
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
 
-PODFILE CHECKSUM: 33a9b1dc5b8bb3133e33e18aafc249c52ba8fa17
+PODFILE CHECKSUM: 0745f8e47e4e3ae3b571f40f48c0ba6c818c032d
 
 COCOAPODS: 1.3.1

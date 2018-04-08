@@ -45,6 +45,18 @@ class OverviewViewController: UIViewController {
         OverviewViewController.activityItems = ActivityItemManager.loadItems()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if Auth.auth().currentUser == nil {
+            let storyboard = UIStoryboard(name: "Main", bundle: Bundle(for: OverviewViewController.self))
+            let vc = storyboard.instantiateViewController(withIdentifier: "initial")
+            DispatchQueue.main.async {
+                self.navigationController?.present(vc, animated: true, completion: nil)
+            }
+        }
+        
+    }
+    
     @objc func watchInfoReceived(info: NSNotification) {
 
     }
@@ -53,7 +65,7 @@ class OverviewViewController: UIViewController {
         
         let vc = ActivitySelectionTableViewController()
         vc.delegate = self
-        navigationController?.pushViewController(vc, animated: true)
+        present(vc, animated: true, completion: nil)
     }
 }
 
