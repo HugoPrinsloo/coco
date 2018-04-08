@@ -59,10 +59,11 @@ class CocoDatabase: StatusDatabase {
                     let id = object?["id"]
                     let startTime = object?["startTime"]
                     let endTime = object?["endTime"]
-
+                    
+                    let date = startTime?.components(separatedBy: " ")[0]
+                                        
                     //creating artist object with model and fetched values
-                    let activityItem = ActivityItem(id: id, name: name, duration: duration, startTime: startTime, endTime: endTime)
-                    print(activityItem)
+                    let activityItem = ActivityItem(id: id, name: name, duration: duration, startTime: startTime, endTime: endTime, date: date)
                     //appending it to list
                     self.items.append(activityItem)
                     self.itemsToWatch.append(activityItem.name)
@@ -108,14 +109,14 @@ class CocoDatabase: StatusDatabase {
         //and also getting the generated key
         if let key: String = item.id {
             //creating item with the given values
+            let endTime = currentDate()
+            let dur: String = duration(start: item.startTime, end: endTime) ?? ""
             let activity = ["id":key,
                             "name": item.name,
-                            "duration": "45",
+                            "duration": dur,
                             "startTime": item.startTime,
-                            "endTime": currentDate()
+                            "endTime": endTime
             ]
-            
-            //adding the artist inside the generated unique key
             
             db?.child(key).setValue(activity)
         }
@@ -142,8 +143,12 @@ class CocoDatabase: StatusDatabase {
                     let startTime = object?["startTime"]
                     let endTime = object?["endTime"]
                     
+                    let date = startTime?.components(separatedBy: " ")[1]
+                    let start = startTime?.components(separatedBy: " ")[0]
+                    let end = endTime?.components(separatedBy: " ")[0]
+
                     //creating artist object with model and fetched values
-                    let activityItem = ActivityItem(id: id, name: name, duration: duration, startTime: startTime, endTime: endTime)
+                    let activityItem = ActivityItem(id: id, name: name, duration: duration, startTime: start, endTime: end, date: date)
                     print(activityItem)
                     //appending it to list
                     self.items.append(activityItem)
@@ -187,6 +192,32 @@ class CocoDatabase: StatusDatabase {
         return formatter.string(from: date)
     }
     
+    func stringToDate(date: String) -> Date? {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
+//        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        if let date = dateFormatter.date(from: date) {
+            let calendar = Calendar.current
+            let components = calendar.dateComponents([.hour, .minute], from: date)
+            let finalDate = calendar.date(from:components)
+            return finalDate
+        }
+        return nil
+    }
+    
+    func duration(start: String, end: String) -> String? {
+        guard let s = stringToDate(date: start), let e = stringToDate(date: end) else {
+            return nil
+        }
+        
+        let form = DateComponentsFormatter()
+        form.maximumUnitCount = 2
+        form.unitsStyle = .positional
+        form.allowedUnits = [.hour, .minute]
+        return form.string(from: s, to: e)
+    }
+    
     func numberOfItems() -> Int {
         return items.count
     }
@@ -203,13 +234,15 @@ public struct ActivityItem: Codable {
     let duration: String
     let startTime: String
     let endTime: String
+    let date: String?
     
-    init(id: String?, name: String?, duration: String?, startTime: String?, endTime: String?) {
+    init(id: String?, name: String?, duration: String?, startTime: String?, endTime: String?, date: String?) {
         self.name = name
         self.duration = duration ?? ""
         self.id = id
         self.startTime = startTime ?? ""
         self.endTime = endTime ?? ""
+        self.date = date
     }
 }
 

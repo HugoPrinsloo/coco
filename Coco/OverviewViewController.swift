@@ -85,7 +85,7 @@ extension OverviewViewController: UICollectionViewDelegate, UICollectionViewData
 extension OverviewViewController: ActivitySelectionDelegate {
     func activitySelectionController(_ activitySelectionController: ActivitySelectionTableViewController, didSelect item: Activity) {
         activitySelectionController.dismiss(animated: true, completion: nil)
-        db.startActivity(ActivityItem(id: nil, name: item.name, duration: nil, startTime: nil, endTime: nil))
+        db.startActivity(ActivityItem(id: nil, name: item.name, duration: nil, startTime: nil, endTime: nil, date: nil))
     }
 }
 
