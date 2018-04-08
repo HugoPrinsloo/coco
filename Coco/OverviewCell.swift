@@ -79,7 +79,6 @@ class OverviewCell: UICollectionViewCell {
             endTimeLabel.alpha = 0
             timelineView.alpha = 0
             durationLabel.alpha = 0
-            print("Open \n")
         case .closed:
             animationView.stopAnimation()
             animationView.isHidden = true
@@ -95,7 +94,6 @@ class OverviewCell: UICollectionViewCell {
             endTimeLabel.alpha = 1
             timelineView.alpha = 1
             durationLabel.alpha = 1
-            print("Closed \n")
         }
     }
     
