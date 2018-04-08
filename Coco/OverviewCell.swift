@@ -51,6 +51,7 @@ class OverviewCell: UICollectionViewCell {
         return l
     }()
     
+    private var gradient: CAGradientLayer = CAGradientLayer()
     
     func configure(_ activity: String, duration: String, startTime: String, endTime: String) {
         activityLabel.text = activity
@@ -65,7 +66,24 @@ class OverviewCell: UICollectionViewCell {
         if endTime != "" {
             let end: String = endTime.components(separatedBy: " ").last ?? ""
             endTimeLabel.text = end
+            configureForEndTime(true)
+        } else {
+            configureForEndTime(false)
         }
+    }
+    
+    private func configureForEndTime(_ finised: Bool) {
+        backgroundColor = UIColor(cocoColor: .washoutBlue)
+        
+        gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
+        gradient.endPoint = CGPoint(x: 1.0, y: 0.5)
+        
+        gradient.frame = bounds
+        gradient.colors = [UIColor(cocoColor: .midnightPurple).withAlphaComponent(0.4).cgColor, UIColor(cocoColor: .midnightPink).withAlphaComponent(0.4).cgColor]
+        
+        layer.insertSublayer(gradient, at: 0)
+        
+        gradient.isHidden = finised
     }
     
     override init(frame: CGRect) {
@@ -84,8 +102,6 @@ class OverviewCell: UICollectionViewCell {
         addSubview(startTimeLabel)
         addSubview(endTimeLabel)
         addSubview(timelineView)
-        
-        backgroundColor = UIColor(cocoColor: .washoutBlue)
         
         layer.cornerRadius = 15
         clipsToBounds = true

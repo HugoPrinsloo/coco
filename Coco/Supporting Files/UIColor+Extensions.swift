@@ -13,7 +13,9 @@ public extension UIColor {
         case midnightBlue
         case washoutBlue
         case whiteBlue
-        
+        case midnightPink
+        case midnightPurple
+
         var name: String {
             switch self {
             case .midnightBlue:
@@ -22,6 +24,10 @@ public extension UIColor {
                 return "Washout Blue"
             case .whiteBlue:
                 return "White Blue"
+            case .midnightPink:
+                return "Midnight Pink"
+            case .midnightPurple:
+                return "Midnight Purple"
             }
         }
     }
