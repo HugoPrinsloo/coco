@@ -57,7 +57,7 @@ class OverviewCell: UICollectionViewCell {
         activityLabel.text = activity
         endTimeLabel.text = endTime
         if duration != "" {
-            durationLabel.text = "\(duration) Min"
+            durationLabel.text = "\(duration)"
         }
         
         let start: String = startTime.components(separatedBy: " ").last ?? ""

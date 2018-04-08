@@ -65,7 +65,7 @@ class CocoDatabase: StatusDatabase {
                     //creating artist object with model and fetched values
                     let activityItem = ActivityItem(id: id, name: name, duration: duration, startTime: startTime, endTime: endTime, date: date)
                     //appending it to list
-                    self.items.append(activityItem)
+                    self.items.insert(activityItem, at: 0)
                     self.itemsToWatch.append(activityItem.name)
                 }
                 
@@ -100,11 +100,11 @@ class CocoDatabase: StatusDatabase {
             
             db?.child(key).setValue(activity)
         }
-        items.append(item)
+        items.insert(item, at: 0)
     }
     
     func endActivity() {
-        let item: ActivityItem = self.items.last!
+        let item: ActivityItem = self.items.first!
         //generating a new key inside item
         //and also getting the generated key
         if let key: String = item.id {
@@ -213,7 +213,7 @@ class CocoDatabase: StatusDatabase {
         
         let form = DateComponentsFormatter()
         form.maximumUnitCount = 2
-        form.unitsStyle = .positional
+        form.unitsStyle = .abbreviated
         form.allowedUnits = [.hour, .minute]
         return form.string(from: s, to: e)
     }
