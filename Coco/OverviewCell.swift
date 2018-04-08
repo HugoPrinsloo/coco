@@ -94,9 +94,27 @@ class OverviewCell: UICollectionViewCell {
         gradient.isHidden = finised
         
         if finised {
-            animationView.stopAnimation()
+            
+            let animator = UIViewPropertyAnimator(duration: 5, curve: .easeOut, animations: nil)
+            animator.addAnimations({ [weak self] in
+                self?.startTimeLabel.alpha = 1
+                self?.endTimeLabel.alpha = 1
+                self?.timelineView.alpha = 1
+                self?.animationView.alpha = 0
+            })
+            animator.addCompletion({ [weak self] (_) in
+                self?.animationView.stopAnimation()
+                self?.animationView.removeFromSuperview()
+            })
+            animator.startAnimation()
+
+            
         } else {
             animationView.startAnimation()
+            activityLabel.transform = CGAffineTransform(translationX: 1.5, y: 2)
+            startTimeLabel.alpha = 0
+            endTimeLabel.alpha = 0
+            timelineView.alpha = 0
         }
         
         animationView.isHidden = finised
