@@ -54,9 +54,11 @@ class OverviewCell: UICollectionViewCell {
     
     func configure(_ activity: String, duration: String, startTime: String, endTime: String) {
         activityLabel.text = activity
-        durationLabel.text = duration
         startTimeLabel.text = startTime
         endTimeLabel.text = endTime
+        if duration != "" {
+            durationLabel.text = "\(duration) Min"
+        }
     }
     
     override init(frame: CGRect) {

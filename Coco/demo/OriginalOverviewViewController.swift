@@ -88,7 +88,9 @@ extension OriginalOverviewViewController: UITableViewDelegate, UITableViewDataSo
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let item = db.itemAtIndex(indexPath.row)
         cell.textLabel?.text = item.name
-        cell.detailTextLabel?.text = "Duration: \(String(describing: item.duration!))min"
+        if item.duration != " " {
+            cell.detailTextLabel?.text = "Duration: \(String(describing: item.duration))min"
+        }
         
         cell.textLabel?.textColor = .black
         cell.detailTextLabel?.textColor = .gray

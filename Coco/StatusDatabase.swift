@@ -92,9 +92,9 @@ class CocoDatabase: StatusDatabase {
             //creating item with the given values
             let activity = ["id":key,
                             "name": item.name,
-                            "duration": "1",
+                            "duration": "",
                             "startTime": currentDate(),
-                            "endTime": "1",
+                            "endTime": "",
                             ]
             
             db?.child(key).setValue(activity)
@@ -110,7 +110,7 @@ class CocoDatabase: StatusDatabase {
             //creating item with the given values
             let activity = ["id":key,
                             "name": item.name,
-                            "duration": "45 Min",
+                            "duration": "45",
                             "startTime": item.startTime,
                             "endTime": currentDate()
             ]
@@ -200,18 +200,19 @@ class CocoDatabase: StatusDatabase {
 public struct ActivityItem: Codable {
     let id: String?
     let name: String?
-    let duration: String?
-    let startTime: String?
-    let endTime: String?
+    let duration: String
+    let startTime: String
+    let endTime: String
     
     init(id: String?, name: String?, duration: String?, startTime: String?, endTime: String?) {
         self.name = name
-        self.duration = duration
+        self.duration = duration ?? ""
         self.id = id
-        self.startTime = startTime
-        self.endTime = endTime
+        self.startTime = startTime ?? ""
+        self.endTime = endTime ?? ""
     }
 }
+
 
 
 
