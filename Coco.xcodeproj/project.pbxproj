@@ -48,6 +48,8 @@
 		6ED3CD23206FA15A00C26F5E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6ED3CD21206FA15A00C26F5E /* LaunchScreen.storyboard */; };
 		6ED3CD2E206FA15A00C26F5E /* CocoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED3CD2D206FA15A00C26F5E /* CocoTests.swift */; };
 		6ED3CD39206FA15A00C26F5E /* CocoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED3CD38206FA15A00C26F5E /* CocoUITests.swift */; };
+		6EF32A4B2083AD8600F3947F /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EF32A4A2083AD8600F3947F /* CloudKit.framework */; };
+		6EF32A4D2083ADF000F3947F /* CocoBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF32A4C2083ADF000F3947F /* CocoBase.swift */; };
 		87C1E9B73D4C921A0B26F65C /* Pods_Coco.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D41162D819200CA6A661BD60 /* Pods_Coco.framework */; };
 		D34AD73C1CA118470AD870D9 /* Pods_CocoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67E279A5E510F8EFDE26D756 /* Pods_CocoUITests.framework */; };
 /* End PBXBuildFile section */
@@ -164,6 +166,8 @@
 		6ED3CD34206FA15A00C26F5E /* CocoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CocoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ED3CD38206FA15A00C26F5E /* CocoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocoUITests.swift; sourceTree = "<group>"; };
 		6ED3CD3A206FA15A00C26F5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6EF32A4A2083AD8600F3947F /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		6EF32A4C2083ADF000F3947F /* CocoBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocoBase.swift; sourceTree = "<group>"; };
 		9BEDFB6FB307731A55B1B5FB /* Pods_CocoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CocoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C33E6898812E511FEDF84B27 /* Pods-Coco.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Coco.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Coco/Pods-Coco.debug.xcconfig"; sourceTree = "<group>"; };
 		D41162D819200CA6A661BD60 /* Pods_Coco.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Coco.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -183,6 +187,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				87C1E9B73D4C921A0B26F65C /* Pods_Coco.framework in Frameworks */,
+				6EF32A4B2083AD8600F3947F /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +329,7 @@
 				6E718F7C207356FF00BB935D /* LoginViewController.swift */,
 				6E775C282078FFC0001799F8 /* OverviewCell.swift */,
 				6EC63D712072C29C004CF135 /* InitialViewController.swift */,
+				6EF32A4C2083ADF000F3947F /* CocoBase.swift */,
 				6E6DB6F5206FB6F6005C2CEB /* StatusDatabase.swift */,
 				6ED3CD1C206FA15900C26F5E /* Main.storyboard */,
 				6ED3CD1F206FA15900C26F5E /* Assets.xcassets */,
@@ -358,6 +364,7 @@
 		72FE90C9A5068276FCEB125E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6EF32A4A2083AD8600F3947F /* CloudKit.framework */,
 				D41162D819200CA6A661BD60 /* Pods_Coco.framework */,
 				9BEDFB6FB307731A55B1B5FB /* Pods_CocoTests.framework */,
 				67E279A5E510F8EFDE26D756 /* Pods_CocoUITests.framework */,
@@ -493,7 +500,7 @@
 								enabled = 1;
 							};
 							com.apple.iCloud = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -774,6 +781,7 @@
 				6EBEA2382078F0BC00221BD5 /* UIColor+Extensions.swift in Sources */,
 				6EBEA2362078F09600221BD5 /* UINavigationBar+Extensions.swift in Sources */,
 				6EBEA2332078F05A00221BD5 /* UIImage+Extensions.swift in Sources */,
+				6EF32A4D2083ADF000F3947F /* CocoBase.swift in Sources */,
 				6EBEA2532078F71600221BD5 /* UIFont+Extensions.swift in Sources */,
 				6E42D4372078D110003CF303 /* OverviewViewController.swift in Sources */,
 				6ED3CD19206FA15900C26F5E /* AppDelegate.swift in Sources */,
