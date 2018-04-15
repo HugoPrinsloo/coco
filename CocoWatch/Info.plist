@@ -26,7 +26,7 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>WKCompanionAppBundleIdentifier</key>
-	<string>com.Coco</string>
+	<string>com.ios.coco</string>
 	<key>WKWatchKitApp</key>
 	<true/>
 </dict>
