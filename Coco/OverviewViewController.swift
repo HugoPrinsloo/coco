@@ -13,11 +13,12 @@ import WatchConnectivity
 
 class OverviewViewController: UIViewController {
     
-    private let db = CocoDatabase()
+    private let db = CocoBase()
     private let itemManager = ActivityItemManager()
     
     static var activityItems: [Activity]?
-    
+    private var items: [ActivityItem] = []
+
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -40,8 +41,10 @@ class OverviewViewController: UIViewController {
         collectionView.register(OverviewCell.self, forCellWithReuseIdentifier: "Cell")
         
         db.itemsDidUpdate = { [weak self] in
-            self?.collectionView.reloadData()
-            self?.addButton.setTitle((self?.db.itemIsOpen)! ? "Stop Activity" : "Add Activity", for: .normal)
+            DispatchQueue.main.async {
+                self?.collectionView.reloadData()
+                self?.addButton.setTitle((self?.db.itemIsOpen)! ? "Stop Activity" : "Add Activity", for: .normal)
+            }
         }
         
         db.fetch()
@@ -51,18 +54,7 @@ class OverviewViewController: UIViewController {
         OverviewViewController.activityItems = ActivityItemManager.loadItems()
         
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if Auth.auth().currentUser == nil {
-            let storyboard = UIStoryboard(name: "Main", bundle: Bundle(for: OverviewViewController.self))
-            let vc = storyboard.instantiateViewController(withIdentifier: "initial")
-            DispatchQueue.main.async {
-                self.navigationController?.present(vc, animated: true, completion: nil)
-            }
-        }
-    }
-    
+        
     @objc func watchInfoReceived(info: NSNotification) {
 
     }
@@ -90,10 +82,8 @@ extension OverviewViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! OverviewCell
         let item = db.itemAtIndex(indexPath.item)
-        let isOpen: Bool = item.endTime == ""
-        let state: OverviewCell.State = isOpen ? .open : .closed
+        let state: OverviewCell.State = db.itemIsOpen ? .open : .closed
         
-        print("Index no: \(indexPath.item)")
         cell.configure(state: state, activity: item.name ?? "", startTime: item.startTime, endTime: item.endTime, duration: item.duration)
         return cell
     }
@@ -120,7 +110,7 @@ extension OverviewViewController: UICollectionViewDataSourcePrefetching {
 extension OverviewViewController: ActivitySelectionDelegate {
     func activitySelectionController(_ activitySelectionController: ActivitySelectionTableViewController, didSelect item: Activity) {
         activitySelectionController.dismiss(animated: true, completion: nil)
-        db.startActivity(ActivityItem(id: nil, name: item.name, duration: nil, startTime: nil, endTime: nil, date: nil))
+        db.startActivity(ActivityItem(id: nil, name: item.name, duration: nil, startTime: nil, endTime: nil))
     }
 }
 
